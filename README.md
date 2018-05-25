@@ -7,7 +7,12 @@
 ### 簡易使用教學
 1. `git clone` 把整個專案 clone 回去
 2. `git checkout -b [你的分支名稱]` 切換到你的分支
-3. 開始 coding
+3. `cd 107-team18` 進入資料夾
+4. `virtualenv env` 建立虛擬環境 (注意若你有 Python2/3 雙版本 請使用 -p python3)
+5. -1 `env\Script\activate` 進入虛擬環境 `Windows`
+5. -2 `source env\bin\activate` 進入虛擬環境 `Mac` `Linux`
+6. `pip install -r requirements.txt` 安裝套件必要套件 
+7. 開始 `coding`
 
 ### 前端
 1. Materialize
@@ -15,7 +20,7 @@
 
 ### 後端
 1. Django 1.11
-2. 其餘參照 [requirements.txt](#)
+2. 其餘參照 [requirements.txt](blob/master/requirements.txt)
 
 ### 注意事項
 1. 請不要直接 `push` 到 `master`
