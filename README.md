@@ -20,7 +20,7 @@
 
 ### 後端
 1. Django 1.11
-2. 其餘參照 [requirements.txt](blob/master/requirements.txt)
+2. 其餘參照 [requirements.txt](requirements.txt)
 
 ### 注意事項
 1. 請不要直接 `push` 到 `master`
