@@ -16,7 +16,7 @@ class MyUser(models.Model):
     user_create_date = models.DateTimeField()
     # NormalUser
     user_gender = models.NullBooleanField(default=None)
-    user_image = models.ImageField(upload_to='static/user_images') # EDIT /static/user_images/FILE.XXX
+    user_image = models.ImageField(upload_to='static/images/user_images') # EDIT /static/user_images/FILE.XXX
     user_school = models.CharField(max_length=100)
     user_deparment = models.CharField(max_length=100)
     user_email = models.CharField(max_length=100)
