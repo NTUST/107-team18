@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import CourseAdminstrator, CourseInformation, CourseFile
 from .forms import CourseFileForm
 from django.contrib import messages
@@ -14,7 +14,7 @@ def courses_detail(request, course_no):
         return render(request, 'main/login.html')
     try:
         course = CourseInformation.objects.get(course_no=course_no)
-    except Exception as e:
+    except:
         messages.info(request, '找不到課程!')
         raise render(request, "courses/index.html")
 
