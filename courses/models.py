@@ -31,3 +31,10 @@ class CourseFile(models.Model):
 
     def __str__(self):
         return self.cfile_content
+
+    class Meta:
+        ordering = ['cfile_year', 'cfile_content']
+        permissions = (
+            ("can_look", "查看檔案"),
+            ("can_upload", "上傳檔案"),
+        )
