@@ -1,10 +1,36 @@
-<div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper">
-      <a href="/" class="left brand-logo">Coper Files</a>
-      <ul class="right hide-on-small-only">
-        <li><a href="{% url 'index' %}">首頁 Home</a></li>
+{% load static %}
+
+<!-- <nav class="brown lighten-3" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="index.html" class="brand-logo" style="height: 100%;"">
+        <img style="max-height: 100%;" src="{% static 'images/logo.png' %}">
+      </a>
+      
+      <ul class="right hide-on-med-and-down">
+        <li  class="active"><a href="index.html">首頁 Home</a></li>
+        <li><a href="course_list.html">課程 Course</a></li>
+        
+        <li><a href='Signup.html'><span class='fas fa-user-plus' style='margin-right: 8px;'></span>註冊 Signup</a></li>
+        <li><a href='login.html'><span class='fas fa-sign-in-alt' style='margin-right: 8px;'></span>登入 Login</a></li>
       </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li  class="active"><a href="index.html">首頁 Home</a></li>
+        <li><a href="course_list.html">課程 Course</a></li>
+        <li><a href="course_edit.html">新課 Add</a></li>
+        <hr>
+        <li><a href="admin_temp_users.html">用戶審核 User Application</a></li>
+        <li><a href="admin_users.html">用戶管理 User Manage</a></li>
+        <li><a href="admin_files.html">文件管理 Files Manage</a></li>
+        <li  class="active"><a href="user_password.html">密碼變更 Password Change</a></li>
+        <hr>
+        <li><a href="user_profile.html">個人檔案 User Profile</a></li>
+        <li><a href="user_files.html">文件管理 Files Manage</a></li>
+        <li><a href="user_password.html">密碼變更 Password Change</a></li>
+        <hr>
+        <li><a href='Signup.html'><span class='fas fa-user-plus' style='margin-right: 8px;'></span>註冊 Signup</a></li>
+        <li><a href='login.html'><span class='fas fa-sign-in-alt' style='margin-right: 8px;'></span>登入 Login</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
-  </nav>
-</div>
+  </nav> -->
