@@ -1,9 +1,151 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block style %}
+<style type="text/css">
+    .coverflow img{
+      width: 100%;
+    }
+
+    a{
+      color: #230903;
+    }
+    
+    a:hover{
+      text-decoration: none !important;
+      color: #a37b75;
+    }
+
+    .ins_head{
+      font-weight: bolder;
+      margin-bottom: 10px;
+    }
+    
+    .ins_file{
+      font-size: 10pt;
+      margin-bottom: 10px;
+      margin-left: 30px;
+    }
+
+  </style>
+{% endblock %}
+
+{% block navbar_css_index %}class="active"{% endblock %}
+{% block navbar_css_course %}{% endblock %}
+{% block navbar_css_new %}{% endblock %}
+{% block navbar_css_files %}{% endblock %}
+
+{% block navbar_css_m_index %}class="active"{% endblock %}
+{% block navbar_css_m_course %}{% endblock %}
+{% block navbar_css_m_new %}{% endblock %}
+{% block navbar_css_m_files %}{% endblock %}
+
 
 {% block content %}
-<table>
-  <tr>
-  	<td>test1</td>
-  </tr>
-</table>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+
+        <div class="coverflow" style="background: #FF00FF;">
+              <a href="https://www.minwt.com/free/19712.html"><img src="{% static 'images/head01.png' %}"></a>
+              <a href="https://www.minwt.com/free/19697.html"><img src="{% static 'images/head02.png' %}"></a>
+              <a href="https://www.minwt.com/ps/15681.html"><img src="{% static 'images/head03.png' %}"></a>
+        </div>
+        <div style="visibility:hidden;"><img src="{% static 'images/head01.png' %}" style="width: 100%;"></div>
+    </div>
+  </div>
+
+  
+
+  <div class="container" style="padding-top: 30px;">
+    
+      <div class="row">
+        <div class="col s12 m9" style="margin: 0px 10px 20px -10px;">
+            <div class="header_big_icon">精選課程</div>
+
+            ﻿﻿﻿<div class='card'>
+
+              <div class='header_mid_icon'>
+                <i class='fas fa-question-circle' style='margin-right: 10px;'></i>
+                <a href='course.php?id=10'>【資訊管理系】物件導向程式語言</a>
+              </div>
+
+              <div style='margin-left:50px; padding-bottom:15px;'>
+                <div class='header_small_icon' style='font-weight: normal;'>任課教師：林伯慎</div>
+                <br>
+                課程檔案數：31 份
+              </div>
+
+            </div>﻿
+
+
+            <div class='card'>
+
+              <div class='header_mid_icon'>
+                <i class='fas fa-question-circle' style='margin-right: 10px;'></i>
+                <a href='course.php?id=1'>【語言中心】科技英文</a>
+              </div>
+
+              <div style='margin-left:50px; padding-bottom:15px;'>
+                <div class='header_small_icon' style='font-weight: normal;'>任課教師：李奎皓</div>
+                <br>
+                課程檔案數：7 份
+              </div>
+
+            </div>﻿
+
+            <div class='card'>
+
+              <div class='header_mid_icon'>
+                <i class='fas fa-question-circle' style='margin-right: 10px;'></i>
+                <a href='course.php?id=11'>【語言中心】表達與經典閱讀（一）</a>
+              </div>
+
+              <div style='margin-left:50px; padding-bottom:15px;'>
+                <div class='header_small_icon' style='font-weight: normal;'>任課教師：王慧燕</div>
+                <br>
+                課程檔案數：1 份
+              </div>
+
+            </div>﻿ 
+
+        </div>
+
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="{% static 'images/icon_Question.png' %}">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4" style="font-size: 16pt; font-weight: bold;">操作說明</span>
+              <p style="font-size: 12pt; color: #9d9d9d; margin-top: -10px;">Instructions</p>
+
+              <hr style="margin-bottom: 20px;">
+                
+              <div style="margin-bottom: 15px; display: none;">
+                <div class="ins_head">加入會員</div>
+                <div class="ins_file"><a href="{% static 'files/Instructions/系統說明書-註冊會員.pdf' %}"><i class="fas fa-file-pdf"></i>註冊會員</a></div>
+              </div>
+              
+              
+              <div style="margin-bottom: 15px;">
+                <div class="ins_head">課程管理</div>
+                <div class="ins_file"><a href="{% static 'files/Instructions/系統說明書-建立課程.pdf' %}"><i class="fas fa-file-pdf"></i>建立課程</a></div>
+                <div class="ins_file"><a href="{% static 'files/Instructions/系統說明書-上傳檔案.pdf' %}"><i class="fas fa-file-pdf"></i>上傳檔案</a></div>
+              </div>
+              
+              
+              <div style="margin-bottom: 15px; display: none;">
+                <div class="ins_head">用戶管理</div>
+                <div class="ins_file"><a href="{% static 'files/Instructions/系統說明書-編輯檔案.pdf' %}"><i class="fas fa-file-pdf"></i>編輯檔案</a></div>
+                <div class="ins_file"><a href="{% static 'files/Instructions/系統說明書-使用者資訊.pdf' %}"><i class="fas fa-file-pdf"></i>使用者資訊</a></div>
+              </div>
+            </div>
+          </div>
+          </div>
+      </div> 
+
+    <br><br>
+  </div>
 {% endblock %}
