@@ -124,4 +124,5 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    '/Users/sheng/Desktop/網頁製作/改造CoperFile/CoperFile/ntust/mysite/static/',
 ]
