@@ -4,13 +4,16 @@ from django.shortcuts import render, get_object_or_404
 from .models import CourseAdminstrator, CourseInformation, CourseFile
 from .forms import CourseFileForm
 
-def courses(request):
+def courses(request): # Get Pages
+    # if request.method = 'POST': # Search
+    #     courses = CourseInformation.objects.filter() # Filter: Admin / Teacher / Name
+    # else: # Not Search
     courses = CourseInformation.objects.all()
-    if not courses.exists():
-        messages.info(request, '課程清單出錯!')
-        return render(request, "courses/index.html")
 
-    return render(request, 'courses/index.html', {'courses', courses})
+    
+    # Get Top 5 By Pages
+    # Get Files length Depend on Pages 
+    return render(request, 'courses/index.html', {'courses': courses})
 
 def courses_detail(request, course_no):
     # is authorize
@@ -20,7 +23,7 @@ def courses_detail(request, course_no):
         messages.info(request, '找不到課程!')
         raise render(request, "courses/index.html")
 
-    return render(request, 'courses/detail.html', {'course', course})
+    return render(request, 'courses/detail.html', {'course': course})
 
 def courses_files_upload(request): # 帶著 files 進來
     # is authorize
