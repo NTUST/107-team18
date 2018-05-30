@@ -1,16 +1,13 @@
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 
 def index(request):
-    return render_to_response('main/index.html')
-
-def course_list(request):
-    return render_to_response('main/course_list.html')
-
+    messages.info(request, '歡迎來到 Coper Files!')
+    return render(request, 'main/index.html')
 
 # def signup(request):
-#     return render_to_response('main/signup.html')
+#     return render('main/signup.html')
 
 # def login(request):
 #     if request.user.is_authenticated(): 

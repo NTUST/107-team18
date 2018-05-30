@@ -14,6 +14,12 @@
 6. `pip install -r requirements.txt` 安裝套件必要套件 
 7. 開始 `coding`
 
+### 簡易修改教學
+1. 確保你以已經按照樓上的使用教學 `clone` 了一個專案 且在你的分支底下
+2. 確保你已經經過 `git add` 及 `git commit` 把新增的程式 commit 到 local repo
+3. `git push origin [你的分支名稱]`
+4. 當你確定你的 `code` 正確無誤且那一部份已經開發完成 就可以在 github 上點選 `pull request` 並在 `comment` 中寫下大概寫了些什麼
+
 ### 前端
 1. Materialize
 2. DjangoTemplates
@@ -31,11 +37,11 @@
 ## 人員篇
 
 ### 前端
-[馮聖峰](https://github.com/Fong0975)
+* [馮聖峰](https://github.com/Fong0975)
 
 ### 後端
-[徐孟辰](https://github.com/sheiun)
+* [徐孟辰](https://github.com/sheiun)
 
 ### 其餘
-[劉柏辰](https://github.com/EE91941387EE)
-[林玉庭](https://github.com/0222826398)
+* [劉柏辰](https://github.com/EE91941387EE)  
+* [林玉庭](https://github.com/0222826398)

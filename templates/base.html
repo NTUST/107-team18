@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -25,53 +24,16 @@
 </head>
 
 <body>
-  <nav class="brown lighten-3" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="index.html" class="brand-logo" style="height: 100%;"">
-        <img style="max-height: 100%;" src="{% static 'images/logo.png' %}">
-      </a>
-      
-      <ul class="right hide-on-med-and-down">
-        <li {% block navbar_css_index %}{% endblock %}><a href="/index">首頁 Home</a></li>
-        <li {% block navbar_css_course %}{% endblock %}><a href="/course_list">課程 Course</a></li>
-        <li {% block navbar_css_new %}{% endblock %}><a href="course_edit.html">新課 New</a></li>
-        <li {% block navbar_css_files %}{% endblock %}><a href="files.html">文件 Files</a></li>
-      </ul>
+  {% include 'includes/_navbar.html' %}
 
-      <ul id="nav-mobile" class="sidenav" style="padding-top: 50px; color: #4c4c4c; ">
-        <div style="font-size: 18pt; font-weight: bold; text-align: center;">== COPER FILE ==</div>
-        <hr>
-        <div style="text-align: center; padding-top: 20px;">
-          <img style="max-height: 120px; " src="{% static 'images/icon_user.png' %}"><br>
-          <div style="font-size: 14pt; font-weight: bold; margin-top: -20px;">使用者 User</div>
-        </div>
-        <hr>
-        <li {% block navbar_css_m_index %}{% endblock %}><a href="index.html">首頁 Home</a></li>
-        <li {% block navbar_css_m_course %}{% endblock %}><a href="course_list.html">課程 Course</a></li>
-        <li {% block navbar_css_m_new %}{% endblock %}><a href="course_edit.html">新課 New Course</a></li>
-        <li {% block navbar_css_m_files %}{% endblock %}><a href="files.html">文件管理 Files</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
+  {% block content %}{% endblock %}
 
-  
-  {% block content %}
-
-  {% endblock %}
-
-  <footer class="page-footer brown">
-    <div class="footer-copyright">
-      <div class="container">
-        Copyright © <a class="orange-text text-lighten-3" href="https://about.me/shengfong" target="_blank">Alpha</a>, <a class="orange-text text-lighten-3" href="https://github.com/sheiun" target="_blank">Sheiun</a>.&nbsp;&nbsp;All rights reserved.
-      </div>
-    </div>
-  </footer>
+  {% include 'includes/_footer.html' %}
 
   <!--  Scripts-->
   <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
   <script src="{% static 'js/materialize.js' %}"></script>
   <script src="{% static 'js/init.js' %}"></script>
-
+  {% include 'includes/_messages.html' %}
 </body>
 </html>

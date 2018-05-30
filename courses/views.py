@@ -1,20 +1,24 @@
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render, render_to_response
+from django.contrib import auth, messages
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 from .models import CourseAdminstrator, CourseInformation, CourseFile
 from .forms import CourseFileForm
 
 def courses(request):
     courses = CourseInformation.objects.all()
+    if not courses.exists():
+        messages.info(request, '課程清單出錯!')
+        return render(request, "courses/index.html")
+
     return render(request, 'courses/index.html', {'courses', courses})
 
 def courses_detail(request, course_no):
     # is authorize
     try:
         course = CourseInformation.objects.get(course_no=course_no)
-    except Exception as e:
-        courses = None
-        raise Http404("找不到頁面")
-        # Redirect to courses page
+    except:
+        messages.info(request, '找不到課程!')
+        raise render(request, "courses/index.html")
 
     return render(request, 'courses/detail.html', {'course', course})
 
