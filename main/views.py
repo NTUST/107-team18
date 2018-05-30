@@ -1,12 +1,12 @@
 from django.contrib import auth, messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from courses.models import CourseInformation
+from courses.models import CourseFile
 
 def index(request):
     messages.info(request, '歡迎來到 Coper Files!')
     # 精選課程 (取出檔案最多的三個課程)
-    # courses = CourseInformation.objects.values('id').annotate(files_count=Count('files')).order_by('-files_count')[:3]
+    # courses = CourseFile.objects.values('id').annotate(files_count=Count('files')).order_by('-files_count')[:3]
     return render(request, 'main/index.html')
 
 def signup(request):
