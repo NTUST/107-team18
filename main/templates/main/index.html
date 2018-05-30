@@ -48,9 +48,9 @@
     <div class="container">
 
         <div class="coverflow" style="background: #FF00FF;">
-              <a href="https://www.minwt.com/free/19712.html"><img src="{% static 'images/head01.png' %}"></a>
-              <a href="https://www.minwt.com/free/19697.html"><img src="{% static 'images/head02.png' %}"></a>
-              <a href="https://www.minwt.com/ps/15681.html"><img src="{% static 'images/head03.png' %}"></a>
+              <a href="{% url 'index' %}"><img src="{% static 'images/head01.png' %}"></a>
+              <a href="{% url 'index' %}"><img src="{% static 'images/head02.png' %}"></a>
+              <a href="{% url 'index' %}"><img src="{% static 'images/head03.png' %}"></a>
         </div>
         <div style="visibility:hidden;"><img src="{% static 'images/head01.png' %}" style="width: 100%;"></div>
     </div>
