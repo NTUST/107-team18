@@ -6,8 +6,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     # index/
     url(r'^index/$', views.index, name='index'),
-    # course_list/
-    url(r'^course_list/$', views.course_list, name='course_list'),
     # # signup/
     # url(r'^signup/$', views.signup, name='signup'),
     # # login/

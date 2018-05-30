@@ -1,14 +1,15 @@
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-<<<<<<< HEAD
+from django.contrib import auth, messages
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-=======
-from django.shortcuts import render, render_to_response
->>>>>>> 778f48507d5e98c4efd918ded22f25cabf968bf1
 from .models import CourseAdminstrator, CourseInformation, CourseFile
 from .forms import CourseFileForm
 
 def courses(request):
     courses = CourseInformation.objects.all()
+    if not courses.exists():
+        messages.info(request, '課程清單出錯!')
+        return render(request, "courses/index.html")
+
     return render(request, 'courses/index.html', {'courses', courses})
 
 def courses_detail(request, course_no):
