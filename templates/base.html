@@ -21,7 +21,7 @@
 
 </head>
 
-<body>
+<body {% block body_tag %}{% endblock %}>
   {% include 'includes/_navbar.html' %}
 
   {% block content %}{% endblock %}
