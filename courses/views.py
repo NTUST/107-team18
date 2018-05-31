@@ -9,6 +9,14 @@ def courses(request): # Get Pages
     #     courses = CourseInformation.objects.filter() # Filter: Admin / Teacher / Name
     # else: # Not Search
     courses = CourseInformation.objects.all()
+<<<<<<< HEAD
+=======
+
+    
+    # Get Top 5 By Pages
+    # Get Files length Depend on Pages 
+    return render(request, 'courses/index.html', {'courses': courses})
+>>>>>>> e8353929ef9e037fc5d3d8c5e745a1a2c62e24f8
 
     # Get Top 5 By Pages
     # Get Files length Depend on Pages 
@@ -16,6 +24,7 @@ def courses(request): # Get Pages
 
 def courses_detail(request, id):
     # is authorize
+<<<<<<< HEAD
     try:
         course = CourseInformation.objects.get(pk=id)
     except:
@@ -23,6 +32,17 @@ def courses_detail(request, id):
         return render(request, 'courses/index.html')
 
     return render(request, 'courses/detail.html', {'course': course})
+=======
+    # try:
+    #     course = CourseInformation.objects.get(course_no=course_no)
+    # except:
+    #     messages.info(request, '找不到課程!')
+    #     return render(request, "courses/index.html")
+
+
+    return render(request, 'courses/detail.html')
+    # return render(request, 'courses/detail.html', {'course': course})
+>>>>>>> e8353929ef9e037fc5d3d8c5e745a1a2c62e24f8
 
 def courses_files_upload(request): # 帶著 files 進來
     # is authorize
@@ -36,4 +56,4 @@ def courses_files_upload(request): # 帶著 files 進來
 
 def courses_files_edit(request):
     # is authorize
-    return HttpResponse('edit')
+    return render(request, 'courses/edit.html')
