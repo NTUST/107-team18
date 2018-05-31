@@ -10,7 +10,7 @@ def courses(request): # Get Pages
     # else: # Not Search
     courses = CourseInformation.objects.all()
 
-    
+
     # Get Top 5 By Pages
     # Get Files length Depend on Pages 
     return render(request, 'courses/index.html', {'courses': courses})
@@ -20,18 +20,18 @@ def courses_detail(request, course_no):
     try:
         course = CourseInformation.objects.get(course_no=course_no)
     except:
-        messages.info(request, 'æ‰¾ä¸åˆ°èª²ç¨‹!')
-        raise render(request, "courses/index.html")
+        messages.info(request, 'ÕÒ²»µ½Õn³Ì!')
+        raise render(request, 'courses/index.html')
 
     return render(request, 'courses/detail.html', {'course': course})
 
-def courses_files_upload(request): # å¸¶è‘— files é€²ä¾†
+def courses_files_upload(request): # §Öø files ßMí
     # is authorize
-    if request.Post: #å¦‚æœæ˜¯ä¸Šå‚³æª”æ¡ˆ
+    if request.Post: #Èç¹ûÊÇÉÏ‚÷™n°¸
         form = CourseFileForm(request.POST)
         if form.is_valid():
             courses = form.save()
-    # å¦å‰‡åå‡º ä¸Šå‚³æª”æ¡ˆçš„é é¢
+    # ·ñ„tÍÂ³ö ÉÏ‚÷™n°¸µÄí“Ãæ
 
     return HttpResponse('upload')
 

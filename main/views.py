@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from courses.models import CourseFile
 
-def index(request):
+def index(request)
     messages.info(request, '歡迎來到 Coper Files!')
     # 精選課程 (取出檔案最多的三個課程)
     # courses = CourseFile.objects.values('id').annotate(files_count=Count('files')).order_by('-files_count')[:3]
