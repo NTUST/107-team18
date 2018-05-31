@@ -1,20 +1,13 @@
 from django.contrib import auth, messages
-<<<<<<< HEAD
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from courses.models import CourseInformation
 from django.db.models import Count
-=======
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from courses.models import CourseFile
->>>>>>> e8353929ef9e037fc5d3d8c5e745a1a2c62e24f8
 
 def index(request):
     messages.info(request, '歡迎來到 Coper Files!')
     # 精選課程 (取出檔案最多的三個課程)
-<<<<<<< HEAD
     courses = CourseInformation.objects.annotate(file_count=Count('coursefile')).order_by('-file_count')[:3]
     return render(request, 'main/index.html', { 'courses': courses })
 
@@ -31,13 +24,6 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'main/signup.html')
-=======
-    # courses = CourseFile.objects.values('id').annotate(files_count=Count('files')).order_by('-files_count')[:3]
-    return render(request, 'main/index.html')
-
-def signup(request):
-    return render('main/signup.html')
->>>>>>> e8353929ef9e037fc5d3d8c5e745a1a2c62e24f8
 
 def login(request):
     if request.user.is_authenticated(): 
