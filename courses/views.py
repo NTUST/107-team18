@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import CourseAdminstrator, CourseInformation, CourseFile
 from .forms import CourseFileForm
 
-def courses(request): # Get Pages
+def courses(request):
     # if request.method = 'POST': # Search
     #     courses = CourseInformation.objects.filter() # Filter: Admin / Teacher / Name
     # else: # Not Search
