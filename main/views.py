@@ -6,7 +6,10 @@ from courses.models import CourseInformation
 from django.db.models import Count
 
 def index(request):
-    messages.info(request, '歡迎來到 Coper Files!')
+    if request.user.is_authenticated():
+        messages.info(request, '%s 歡迎回來!' % request.user.username)
+    else:
+        messages.info(request, '歡迎來到 Coper Files!')
     # 精選課程 (取出檔案最多的三個課程)
     courses = CourseInformation.objects.annotate(file_count=Count('coursefile')).order_by('-file_count')[:3]
     return render(request, 'main/index.html', { 'courses': courses })

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class CourseAdminstrator(models.Model):
     admin_id = models.CharField(max_length=20)
@@ -9,7 +10,7 @@ class CourseAdminstrator(models.Model):
 
 class CourseInformation(models.Model):
     course_administrator = models.ForeignKey(CourseAdminstrator, on_delete=models.CASCADE)
-    course_no = models.CharField(max_length=20)
+    # course_no = models.CharField(max_length=20)
     course_name = models.CharField(max_length=20)
     course_teacher = models.CharField(max_length=20)
     course_type = models.CharField(max_length=20)
@@ -20,7 +21,7 @@ class CourseInformation(models.Model):
         return self.course_name
 
 class CourseFile(models.Model):
-    # uploader = models.ForeignKey('users.User', on_delete=models.DO_NOTHING)
+    uploader = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     course = models.ForeignKey(CourseInformation, on_delete=models.CASCADE)
     parent = models.ForeignKey('self', default=None, on_delete=models.DO_NOTHING)
     cfile_class = models.CharField(max_length=20) # COMMENT 'Handout/Homework/Exam'
