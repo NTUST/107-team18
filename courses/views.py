@@ -5,16 +5,17 @@ from .models import CourseAdminstrator, CourseInformation, CourseFile
 from .forms import CourseFileForm
 
 def courses(request):
-    # if request.method = 'POST': # Search
-    #     courses = CourseInformation.objects.filter() # Filter: Admin / Teacher / Name
-    # else: # Not Search
-    courses = CourseInformation.objects.all()
-    # Get Top 5 By Pages
-    # Get Files length Depend on Pages 
+    if request.method == 'POST': # Search
+        courses = CourseInformation.objects.filter() # Filter: Admin / Teacher / Name
+    else: # Not Search
+        courses = CourseInformation.objects.all()
     return render(request, 'courses/index.html', {'courses': courses})
 
 def courses_detail(request, id):
-    # is authorize
+    if not request.user.is_authenticated():
+        messages.info(request, '請先登入')
+        return render(request, 'main/login.html')
+
     try:
         course = CourseInformation.objects.get(pk=id)
     except:
@@ -24,7 +25,10 @@ def courses_detail(request, id):
     return render(request, 'courses/detail.html', {'course': course})
 
 def courses_files_upload(request): # 帶著 files 進來
-    # is authorize
+    if not request.user.is_authenticated():
+        messages.info(request, '請先登入!')
+        return render(request, 'main/login.html')
+    
     if request.Post: #如果是上傳檔案
         form = CourseFileForm(request.POST)
         if form.is_valid():
@@ -34,5 +38,8 @@ def courses_files_upload(request): # 帶著 files 進來
     return HttpResponse('upload')
 
 def courses_files_edit(request):
-    # is authorize
+    if not request.user.is_authenticated():
+        messages.info(request, '請先登入!')
+        return render(request, 'main/login.html')
+
     return render(request, 'courses/edit.html')
