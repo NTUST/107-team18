@@ -60,55 +60,29 @@
 
   <div class="container" style="padding-top: 30px;">
     
+    
       <div class="row">
         <div class="col s12 m9" style="margin: 0px 10px 20px -10px;">
             <div class="header_big_icon">精選課程</div>
 
-            ﻿﻿﻿<div class="card">
+            {% for c in courses %}
+              ﻿﻿﻿<div class="card">
 
-              <div class="header_mid_icon">
-                <i class="fas fa-question-circle" style="margin-right: 10px;"></i>
-                <a href="">【資訊管理系】物件導向程式語言</a>
-              </div>
+                <div class="header_mid_icon">
+                  <i class="fas fa-question-circle" style="margin-right: 10px;"></i>
+                  <a href="/courses/{{ c.pk }}">【{{ c.course_administrator }}】{{ c.course_name }}</a>
+                </div>
 
-              <div style="margin-left:50px; padding-bottom:15px;">
-                <div class="header_small_icon" style="font-weight: normal;">任課教師：林伯慎</div>
-                <br>
-                課程檔案數：31 份
-              </div>
+                <div style="margin-left:50px; padding-bottom:15px;">
+                  <div class="header_small_icon" style="font-weight: normal;">任課教師：{{ c.course_teacher }}</div>
+                  <br>
+                  課程檔案數：00 份
+                </div>
 
-            </div>﻿
-
-
-            <div class="card">
-
-              <div class="header_mid_icon">
-                <i class="fas fa-question-circle" style='margin-right: 10px;'></i>
-                <a href="">【語言中心】科技英文</a>
-              </div>
-
-              <div style="margin-left:50px; padding-bottom:15px;">
-                <div class='header_small_icon' style='font-weight: normal;'>任課教師：李奎皓</div>
-                <br>
-                課程檔案數：7 份
-              </div>
-
-            </div>﻿
-
-            <div class='card'>
-
-              <div class="header_mid_icon">
-                <i class="fas fa-question-circle" style='margin-right: 10px;'></i>
-                <a href="">【語言中心】表達與經典閱讀（一）</a>
-              </div>
-
-              <div style='margin-left:50px; padding-bottom:15px;'>
-                <div class='header_small_icon' style='font-weight: normal;'>任課教師：王慧燕</div>
-                <br>
-                課程檔案數：1 份
-              </div>
-
-            </div>﻿ 
+              </div>﻿
+            {% endfor %}
+    
+            
 
         </div>
 

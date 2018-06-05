@@ -1,5 +1,169 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}註冊 | {% endblock %}
+
+{% block style %}
+  <script type="text/javascript">
+    function RESIZE(){
+      var w = window.outerWidth;
+
+      if(w <= 901){
+        document.getElementById("login_care").classList.remove('horizontal');
+      }else{
+        document.getElementById("login_care").classList.add('horizontal');
+      }
+
+    }
+  </script>
+
+  <style type="text/css">
+    .card img{
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .loginPanel{
+        text-align: center;
+        
+        background-color:#fff;
+        width:50%;
+        height:500px;
+        min-width: 300px !important;
+        
+        margin:20px auto 30px auto;
+        
+        border-radius: 10px;
+        border-top: 1px solid transparent;;
+        box-shadow: 0 0 15px #efeded;
+      }
+
+      .Login_Title{
+        padding-bottom: 3px;
+        border-bottom: 6px solid #5D4037;
+      }
+
+      .Login_Title_Che{
+        font-size: 16pt;
+        font-weight: bolder;
+        color: #212121;
+      }
+
+      .Login_Title_Eng{
+        font-size: 12pt;
+        margin-left: 5px;
+        color: #9E9E9E;
+      }
+
+      .Login_Title_Des{
+        /*width:100%;
+        text-align: right;*/
+        font-size: 10pt;
+        color: #757575;
+      }
+
+      .Login_Container{
+        font-size: 11pt !important;
+        margin-top: 30px;
+      }
+
+      .user_input{
+        margin-bottom: 30px !important;
+      }
+
+  </style>
+{% endblock %}
+
+{% block navbar_css_index %}{% endblock %}
+{% block navbar_css_course %}{% endblock %}
+{% block navbar_css_new %}{% endblock %}
+{% block navbar_css_files %}{% endblock %}
+
+{% block navbar_css_m_index %}{% endblock %}
+{% block navbar_css_m_course %}{% endblock %}
+{% block navbar_css_m_new %}{% endblock %}
+{% block navbar_css_m_files %}{% endblock %}
+
+{% block body_tag %}onload="RESIZE();"  onresize="RESIZE()"{% endblock %}
+
 
 {% block content %}
-<!-- 輸入的區域 -->
+<div class="container" style="padding-top: 30px;">
+    
+      <div class="row">
+          <div class="col s12 m12">
+            <div id="login_care" class="card">
+              
+              <div class="card-stacked">
+                <div class="card-content">
+                  <div class="Login_Title">
+                      <p class="Login_Title_Che">會員註冊<span class="Login_Title_Eng">Signup</span></p>
+                      <p class="Login_Title_Des">Coper File歡迎您的加入</p>
+                  </div>
+
+
+                  <div class="Login_Container">
+                    <form>
+
+                        <div class="input-field">
+                          <input class="user_input validate" id="tb_Account" name="tb_Account" type="text" placeholder="請輸入帳號 Account">
+                          <label for="tb_Account">帳號 Account</label>
+                        </div>
+
+                        <div class="input-field " style="margin-top: -20px;">
+                          <input class="user_input validate" id="tb_Password" name="tb_Password" type="password" placeholder="請輸入密碼 Password">
+                          <label for="tb_Password">密碼 Password</label>
+                        </div>
+
+                        <div class="input-field " style="margin-top: -20px;">
+                          <input class="user_input validate" id="tb_Password_ck" name="tb_Password_ck" type="password" placeholder="請確認密碼 Check">
+                          <label for="tb_Password_ck">確認 Check</label>
+                        </div>
+
+                        <div class="input-field " style="margin-top: -20px;">
+                          <input class="user_input validate" id="tb_Name" name="tb_Name" type="text" placeholder="請輸入姓名 Name">
+                          <label for="tb_Name">姓名 Name</label>
+                        </div>
+
+                        <div class="input-field " style="margin-top: -40px;">
+                          <div><font style="color: #a1a1a1; font-size: 9pt;">我是 I am</font>
+                            <p style="margin-left: 20px; margin-bottom: 40px;">
+                              <label>
+                                <input class="with-gap" name="ra_gender" type="radio" checked="true" />
+                                <span>男生 Male</span>
+                              </label>
+                              <label>
+                                <input  class="with-gap"  name="ra_gender" type="radio"" />
+                                <span>女生 Female</span>
+                              </label>
+                            </p></div>
+
+                        </div>
+                        
+
+                        <p style="margin-top: -10px;"> 
+                          <label>
+                            <input type="checkbox" />
+                            <span>記住我 <font style="font-size: 8px;">Remember</font></span>
+                          </label>
+                        </p>
+
+                    </form>
+                    
+                  </div>
+
+
+                  
+                  
+                </div>
+                <div class="card-action" >
+                  <a class="waves-effect waves-light btn-large  brown darken-4" style="width: 100%;"><div style="max-width: 90px; margin: auto; "><i class="material-icons left" style="margin-right: 0px;">send</i>送出</div></a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div> 
+
+    <br><br>
+  </div>
 {% endblock %}
