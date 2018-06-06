@@ -12,7 +12,7 @@
       <li {% block navbar_css_new %}{% endblock %}><a href="{% url 'courses_files_edit' %}">新課</a></li>
       <!-- <li {% block navbar_css_files %}{% endblock %}><a href="files.html">文件 Files</a></li> -->
       {% if user.is_authenticated %}
-      <li><a href="{% url 'users_panel' %}"><span class='fas fa-user-graduate' style='margin-right: 8px;'></span>User</a></li>
+      <li><a href="{% url 'users_panel' %}"><span class='fas fa-user-graduate' style='margin-right: 8px;'></span>{{ user.username }}</a></li>
       <li><a href="{% url 'logout' %}"><span class='fas fa-sign-in-alt' style='margin-right: 8px;'></span>登出</a></li>
       {% else %}
       <li><a href="{% url 'signup' %}"><span class='fas fa-user-plus' style='margin-right: 8px;'></span>註冊</a></li>
@@ -25,7 +25,7 @@
       <hr>
       <div style="text-align: center; padding-top: 20px;">
         <img style="max-height: 120px; " src="{% static 'images/icon_user.png' %}"><br>
-        <div style="font-size: 14pt; font-weight: bold; margin-top: -20px;">使用者 User</div>
+        <div style="font-size: 14pt; font-weight: bold; margin-top: -20px;">{{ user.username }}</div>
       </div>
       <hr>
       <li {% block navbar_css_m_index %}{% endblock %}><a href="{% url 'index' %}">首頁 Home</a></li>

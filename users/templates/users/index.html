@@ -3,6 +3,9 @@
 {% block title %}用戶後台 | {% endblock %}
 {% block style %}
   <style type="text/css">
+    a{
+      color: #5c5c5c
+    }
     .page_header{
       width:100%;
 
@@ -123,16 +126,20 @@
       <!-- ======================= Page Title ======================= -->
       <div class="row page_body">
           <div class="col s12 m6 card_combine_p">
-            <div class="card_combine">
-              <div class="card_top red_top"><img src="{% static 'images/icon_list.png' %}"></div>
-              <div class="card_bottom red_bottom">個人檔案<br><font class="titleEng">User Profile</font></div>
-            </div>
+            <a href="{% url 'users_profile' %}">
+              <div class="card_combine">
+                <div class="card_top red_top"><img src="{% static 'images/icon_list.png' %}"></div>
+                <div class="card_bottom red_bottom">個人檔案<br><font class="titleEng">User Profile</font></div>
+              </div>
+            </a>            
           </div>
           <div class="col s12 m6 card_combine_p">
-            <div class="card_combine">
-              <div class="card_top green_top"><img src="{% static 'images/icon_document.png' %}"></div>
-              <div class="card_bottom green_bottom">文件管理<br><font class="titleEng">Files Manage</font></div>
-            </div>
+            <a href="{% url 'users_files' %}">
+              <div class="card_combine">
+                <div class="card_top green_top"><img src="{% static 'images/icon_document.png' %}"></div>
+                <div class="card_bottom green_bottom">文件管理<br><font class="titleEng">Files Manage</font></div>
+              </div>
+            </a>
           </div>
           <!-- <div class="col s12 m4 card_combine_p">
             <div class="card_combine">

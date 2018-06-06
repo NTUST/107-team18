@@ -25,17 +25,19 @@ def courses_detail(request, id):
     return render(request, 'courses/detail.html', {'course': course})
 
 def courses_files_upload(request): # 帶著 files 進來
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         messages.info(request, '請先登入!')
         return render(request, 'main/login.html')
     
-    if request.Post: #如果是上傳檔案
+    if request.method == 'POST': #如果是上傳檔案
         form = CourseFileForm(request.POST)
         if form.is_valid():
             courses = form.save()
+    else:
+        return render(request, 'courses/upload.html')
     # 否則吐出 上傳檔案的頁面
 
-    return HttpResponse('upload')
+    return render(request, 'courses/upload.html')
 
 def courses_files_edit(request):
     if not request.user.is_authenticated:
