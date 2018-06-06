@@ -82,15 +82,15 @@
                 
                 {% for course in courses %}
                 <div class="course_list_one">
-                  <div class='header_mid_icon'>
-                    <i class='fas fa-bookmark' style='margin-right: 10px;'></i>
-                    <a href='detail.html?id=1'>{{ course.course_name }}</a>
+                  <div class="header_mid_icon">
+                    <i class="fas fa-bookmark" style="margin-right: 10px;"></i>
+                    <a href="{% url 'courses_detail' course.id %}">{{ course.course_name }}</a>
                   </div>
 
-                  <div style='margin-left:50px; padding-bottom:15px;'>
-                    <div class='header_small_icon' style='font-weight: normal;'>任課教師：{{ course.course_teacher }}</div>
+                  <div style="margin-left:50px; padding-bottom:15px;">
+                    <div class="header_small_icon" style="font-weight: normal;">任課教師：{{ course.course_teacher }}</div>
                     <br>
-                    <div class="fileCount">課程檔案數：7 份</div>
+                    <div class="fileCount">課程檔案數：{{ course.file_count }} 份</div>
                   </div>
                 </div>
                 {% endfor %}
