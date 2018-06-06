@@ -26,12 +26,12 @@ def courses(request):
     return render(request, 'courses/index.html', {'courses': courses})
 
 def courses_detail(request, id):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         messages.info(request, '請先登入')
         return render(request, 'main/login.html')
 
     try:
-        course = CourseInformation.objects.filter(pk=id)
+        course = CourseInformation.objects.get(pk=id)
     except:
         messages.info(request, '找不到課程!')
         return render(request, 'courses/index.html')

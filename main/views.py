@@ -6,7 +6,7 @@ from django.shortcuts import render
 from courses.models import CourseInformation
 
 def index(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         messages.info(request, '%s 歡迎回來!' % request.user.username)
     else:
         messages.info(request, '歡迎來到 Coper Files!')
@@ -20,18 +20,18 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             messages.info(request, '註冊成功!')
-            return render(request, 'main/login.html')
+            return index(request)
         else:
             messages.info(request, '註冊失敗!')
-            return render(request, 'main/signup.hmtl', locals())
+            return render(request, 'main/signup.html', locals())
     else:
         form = UserCreationForm()
     return render(request, 'main/signup.html')
 
 def login(request):
-    if request.user.is_authenticated(): 
+    if request.user.is_authenticated: 
         messages.info(request, '你已登入!')
-        return render(request, 'main/index.html')
+        return index(request)
 
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
@@ -41,11 +41,12 @@ def login(request):
     if user is not None and user.is_active:
         auth.login(request, user)
         messages.info(request, '登入成功!')
-        return render(request, 'main/index.html')
+        return index(request)
     else:
         messages.info(request, '登入失敗!')
         return render(request, 'main/login.html') 
 
 def logout(request):
     messages.info(request, '登出成功!')
-    return render(request, 'main/logout.html')
+    auth.logout(request)
+    return index(request)

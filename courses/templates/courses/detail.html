@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}課程 | {% endblock %}
+
+{% block title %}課程資訊-{{ course.course_name }} | {% endblock %}
 {% block style %}
 <script type="text/javascript">
     function RESIZE(){
@@ -28,21 +29,6 @@
 
     }
 
-    .loginPanel{
-        text-align: center;
-        
-        background-color:#fff;
-        width:50%;
-        height:500px;
-        min-width: 300px !important;
-        
-        margin:20px 15px 30px 15px;
-        
-        border-radius: 10px;
-        border-top: 1px solid transparent;;
-        box-shadow: 0 0 15px #efeded;
-      }
-
       .Login_Container{
         font-size: 11pt !important;
         margin-top: 30px;
@@ -50,8 +36,9 @@
 
       .card-image{
         font-size: 11pt !important;
-        margin: auto 15px 15px 15px !important;
+        margin: auto 15px auto 15px !important;
         text-align: left !important;
+        vertical-align: top;
       }
     
       .card-stacked{
@@ -79,6 +66,7 @@
       .course_file-body{
         padding: 5px 15px;
       }
+
   </style>
 {% endblock %}
 
@@ -95,12 +83,13 @@
 {% block body_tag %}onload="RESIZE();"  onresize="RESIZE()"{% endblock %}
 
 {% block content %}
+
 <div class="container" style="padding-top: 30px;">
-    
+  
       <!-- ======================= Page Title ======================= -->
       <div class="card row page_header">
           <div class="col s12 m9">
-              <div class="">科技英文</div>
+              <div class="">{{ course.course_name }}</div>
           </div>
           <div class="col s12 m3" style="padding: 5px 10px; text-align: right;"><a class="waves-effect waves-light btn-large orange accent-2" style="box-shadow: none !important;" href="upload.html"><i class="material-icons left">attach_file</i>新增檔案</a></div>
       </div> 
@@ -111,18 +100,10 @@
           <div class="col s12 m12">
             <div id="login_care" class="card horizontal">
               <div class="card-image" style="width:90%;">
-                <p>
-                    ﻿Focus is on the following topics:<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;‧Brief history of how the English Language became the language of science.<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;‧Latin and Greek word elements, their usage and meaning.<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;‧Expansion of scientific vocabulary, and their usage and meaning.<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;‧The correct use of scientific terminology .<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;‧The correct use of English in describing math, numbers and quantities.<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;‧The correct use of verb tense and prepositions for scientific communication..<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;‧Using active voice in speaking, and passive voice in writing technical documents.      </p>
+                <p>{{ course.course_discription|safe }}</p>
                    <Br>
                    <a class="waves-effect waves-light btn  orange accent-1">
-                     <div href='#' target='_blank'>詳細資訊 View details »</div>
+                     <div href='{{ c.course_website }}' target='_blank'>詳細資訊 View details »</div>
                    </a>
               </div>
 
@@ -134,23 +115,23 @@
 
 
                   <div class="Login_Container">
-                        <table class="table highlight" style="height: 100%; ">
+                        <table class="table highlight" style="height: 100%; max-height: 300px;">
                           <tbody>
                             <tr>
                               <th width="120px;">開課單位</th>
-                              <td>﻿語言中心</td>
+                              <td>{{ course.course_administrator }}</td>
                             </tr>
                             <tr>
                               <th>課程名稱</th>
-                              <td>﻿科技英文</td>
+                              <td>{{ course.course_name }}</td>
                             </tr>
                             <tr>
                               <th>授課教授</th>
-                              <td>﻿李奎皓</td>
+                              <td>{{ course.course_teacher }}</td>
                             </tr>
                             <tr>
                               <th>選修類型</th>
-                              <td>﻿﻿選修</td>
+                              <td>{{ course.course_type }}</td>
                             </tr>
                           </tbody>
                         </table>
