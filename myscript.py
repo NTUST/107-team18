@@ -55,4 +55,7 @@ CourseInformation.objects.create(course_administrator=CourseAdminstrator.objects
 CourseInformation.objects.create(course_administrator=CourseAdminstrator.objects.get(admin_name='資訊管理系'), course_name='物件導向程式語言', course_teacher='林伯慎', course_type=0, course_discription='介紹物件導向程式語言的概念和更高級的設計問題。 一些Java示範程式碼將在課堂上進行介紹和說明。 （需要Java編程語言的基礎知識。）\r<br>\r<br>Introduce the concepts of object-oriented programming language and more advanced design issues. A few Java sample codes will be presented and illustrated in the class. (Basic knowledge of Java programming language is required.)', course_website='http://info.ntust.edu.tw/faith/edua/app/qry_linkoutline.aspx?semester=1062&courseno=MI4204302')
 CourseInformation.objects.create(course_administrator=CourseAdminstrator.objects.get(admin_name='人文課程'), course_name='表達與經典閱讀（一）', course_teacher='王慧燕', course_type=0, course_discription='1、課程教材的安排\n<br>  （1）抒發情思之古今文學作品的導讀與賞析。\n<br>  （2）中華文化歷代哲人對生命學習的探問與討論。\n<br>\n<br>2、授課的核心關懷\n<br>  （1）實感與時義：從經典汲取有益於探索生命的資糧，學習以己身之生活經驗為基礎，用生活化的眼光來解讀經典，並賦予經典時代意義。\n<br>  （2）視域與格局：以關懷他者（人文社會、自然環境、其他生命……）為出發點，培養己他互為主體的胸懷，開擴心量、拓展生命內涵，為人生引路。\n<br>\n<br>3、課程主題的擬訂\n<br>   ---以古典經籍為源，以現代篇章之議題為流。\n<br>   如：（1）以探討「立志」、「志道」、「志於學」的經典文句為序說，展開關於「我決定……」的價值性思考。\n<br>  （2）以探問「求放心」的經籍為據，思考關於「收心操」之方法性的議題。', course_website='http://info.ntust.edu.tw/faith/edua/app/qry_linkoutline.aspx?semester=1051&courseno=CC1246301')
 
-print(CourseInformation.objects.all())
+###################
+from django.contrib.auth.models import User
+u = User.objects.create_user(username='sheiun', password='P@ssword')
+s = User.objects.create_superuser(username='admin', password='P@ssword')

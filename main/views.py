@@ -1,9 +1,9 @@
 from django.contrib import auth, messages
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Count
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from courses.models import CourseInformation
-from django.db.models import Count
 
 def index(request):
     if request.user.is_authenticated():

@@ -15,7 +15,7 @@ class CourseInformation(models.Model):
     course_teacher = models.CharField(max_length=20)
     course_type = models.CharField(max_length=20)
     course_discription = models.CharField(max_length=500, null=True)
-    course_website = models.CharField(max_length=50, null=True)
+    course_website = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.course_name
