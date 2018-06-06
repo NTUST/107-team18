@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}課程清單 | {% endblock %}
 {% block style %}
+
 <style type="text/css">
     th,td{
 			vertical-align: middle !important;
@@ -95,7 +96,7 @@
                 </div>
                 {% endfor %}
 
-                <div style="margin-top: 30px; width: 100%; text-align: center;">
+                <!-- <div style="margin-top: 30px; width: 100%; text-align: center;">
                   <ul class="pagination">
                     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                     <li class="active brown darken-1"><a href="#!">1</a></li>
@@ -105,33 +106,33 @@
                     <li class="waves-effect"><a href="#!">5</a></li>
                     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                   </ul>
-                </div>
+                </div> -->
 
               </div>
               <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">條件搜尋<i class="material-icons right">check</i></span>
+                <span id="bt_search" class="card-title grey-text text-darken-4">條件搜尋<i class="material-icons right">check</i></span>
                 <p>請在此輸入相關資訊，以利搜尋到欲查找的課程資料。</p>
                 <hr>
                 
                 <div><font style="color: #a1a1a1; font-size: 9pt;">篩選準則</font>
                   <p style="margin-left: 20px; margin-bottom: 40px;">
                     <label>
-                      <input class="with-gap" name="ra_gender" type="radio" checked="true" />
+                      <input  class="with-gap" name="ra_gender" type="radio" checked="true" value="admin" />
                       <span>開課單位 Course_Administrator</span>
                     </label>
                     <label>
-                      <input  class="with-gap"  name="ra_gender" type="radio"" />
+                      <input  class="with-gap"  name="ra_gender" type="radio" value="name" />
                       <span>課程名稱 Course_Name</span>
                     </label>
                     <label>
-                      <input  class="with-gap"  name="ra_gender" type="radio"" />
+                      <input  class="with-gap"  name="ra_gender" type="radio" value="teacher" />
                       <span>授課教師 Course_Teacher</span>
                     </label>
                   </p>
                 </div>
 
                 <div class="input-field " style="">
-                  <input class="user_input validate" id="tb_Name" name="tb_Name" type="text" placeholder="">
+                  <input class="user_input validate" id="search_Name" name="search_Name" type="text" placeholder="">
                   <label for="tb_Name">關鍵字</label>
                 </div>
 
@@ -142,3 +143,10 @@
     <br><br>
   </div>
 {% endblock %}
+{% block script %}
+<script type="text/javascript">
+  $("#bt_search").click(function(){
+    $.post("{% url 'courses' %}",{'mode': $("input[name='ra_gender']:checked").val() , 'condition': $("#search_Name").val()} );
+  });
+</script>
+{% endblock%}

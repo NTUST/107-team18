@@ -1,4 +1,4 @@
-f{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}課程資訊-{{ course.course_name }} | {% endblock %}
@@ -100,7 +100,7 @@ f{% extends 'base.html' %}
           <div class="col s12 m12">
             <div id="login_care" class="card horizontal">
               <div class="card-image" style="width:90%;">
-                <p>{{ course.course_discription }}</p>
+                <p>{{ course.course_discription|safe }}</p>
                    <Br>
                    <a class="waves-effect waves-light btn  orange accent-1">
                      <div href='{{ c.course_website }}' target='_blank'>詳細資訊 View details »</div>

@@ -38,7 +38,7 @@ def courses_files_upload(request): # 帶著 files 進來
     return HttpResponse('upload')
 
 def courses_files_edit(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         messages.info(request, '請先登入!')
         return render(request, 'main/login.html')
 
