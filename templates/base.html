@@ -13,12 +13,10 @@
   <link href="{% static 'css/img_wall.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-
-
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  
   {% block style %}{% endblock %}
-
-
 </head>
 
 <body {% block body_tag %}{% endblock %}>
@@ -32,6 +30,9 @@
   <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
   <script src="{% static 'js/materialize.js' %}"></script>
   <script src="{% static 'js/init.js' %}"></script>
+
   {% include 'includes/_messages.html' %}
+  {% include 'includes/_forms.html' %}
+  {% block script %}{% endblock %}
 </body>
 </html>

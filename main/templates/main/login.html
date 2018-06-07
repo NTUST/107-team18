@@ -74,18 +74,7 @@
   </style>
 {% endblock %}
 
-{% block navbar_css_index %}{% endblock %}
-{% block navbar_css_course %}{% endblock %}
-{% block navbar_css_new %}{% endblock %}
-{% block navbar_css_files %}{% endblock %}
-
-{% block navbar_css_m_index %}{% endblock %}
-{% block navbar_css_m_course %}{% endblock %}
-{% block navbar_css_m_new %}{% endblock %}
-{% block navbar_css_m_files %}{% endblock %}
-
 {% block body_tag %}onload="RESIZE();"  onresize="RESIZE()"{% endblock %}
-
 
 {% block content %}
 <div class="container" style="padding-top: 30px;">
@@ -93,9 +82,11 @@
       <div class="row">
           <div class="col s12 m12">
             <div id="login_care" class="card horizontal">
+
               <div class="card-image" style="width:100%; text-align: center;">
                 <img src="{% static 'images/login.png' %}">
               </div>
+              
               <div class="card-stacked">
                 <div class="card-content">
                   <div class="Login_Title">
@@ -105,7 +96,7 @@
 
 
                   <div class="Login_Container">
-                    <form id="form" action="." method="POST">
+                    <form id="form" action="{% url 'login' %}" method="POST">
                       {% csrf_token %}
                         <div class="input-field">
                           <i class="material-icons prefix">account_circle</i>

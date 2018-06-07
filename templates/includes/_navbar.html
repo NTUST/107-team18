@@ -7,12 +7,17 @@
     </a>
     
     <ul class="right hide-on-med-and-down">
-      <li {% block navbar_css_index %}{% endblock %}><a href="{% url 'index' %}">首頁</a></li>
-      <li {% block navbar_css_course %}{% endblock %}><a href="{% url 'courses' %}">課程</a></li>
-      <li {% block navbar_css_new %}{% endblock %}><a href="{% url 'courses_files_edit' %}">新課</a></li>
+      <li {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}><a href="{% url 'index' %}">首頁</a></li>
+      <li {% if request.resolver_match.url_name == 'courses' %}class="active"{% endif %}><a href="{% url 'courses' %}">課程</a></li>
+      <li {% if request.resolver_match.url_name == 'courses_edit' %}class="active"{% endif %}><a href="{% url 'courses_edit' %}">新課</a></li>
       <!-- <li {% block navbar_css_files %}{% endblock %}><a href="files.html">文件 Files</a></li> -->
-      <li><a href='Signup.html'><span class='fas fa-user-plus' style='margin-right: 8px;'></span>註冊</a></li>
-      <li><a href='login.html'><span class='fas fa-sign-in-alt' style='margin-right: 8px;'></span>登入</a></li>
+      {% if user.is_authenticated %}
+      <li {% if request.resolver_match.url_name == 'users_panel' %}class="active"{% endif %}><a href="{% url 'users_panel' %}"><span class="fas fa-user-graduate" style="margin-right: 8px;"></span>{{ user.first_name }}</a></li>
+      <li {% if request.resolver_match.url_name == 'logout' %}class="active"{% endif %}><a href="{% url 'logout' %}"><span class="fas fa-sign-in-alt" style="margin-right: 8px;"></span>登出</a></li>
+      {% else %}
+      <li {% if request.resolver_match.url_name == 'signup' %}class="active"{% endif %}><a href="{% url 'signup' %}"><span class="fas fa-user-plus" style="margin-right: 8px;"></span>註冊</a></li>
+      <li {% if request.resolver_match.url_name == 'login' %}class="active"{% endif %}><a href="{% url 'login' %}"><span class="fas fa-sign-out-alt" style="margin-right: 8px;"></span>登入</a></li>
+      {% endif %}
     </ul>
 
     <ul id="nav-mobile" class="sidenav" style="padding-top: 50px; color: #4c4c4c; ">
@@ -20,16 +25,21 @@
       <hr>
       <div style="text-align: center; padding-top: 20px;">
         <img style="max-height: 120px; " src="{% static 'images/icon_user.png' %}"><br>
-        <div style="font-size: 14pt; font-weight: bold; margin-top: -20px;">使用者 User</div>
+        <div style="font-size: 14pt; font-weight: bold; margin-top: -20px;">{{ user.first_name }}</div>
       </div>
       <hr>
-      <li {% block navbar_css_m_index %}{% endblock %}><a href="{% url 'index' %}">首頁 Home</a></li>
-      <li {% block navbar_css_m_course %}{% endblock %}><a href="{% url 'courses' %}">課程 Course</a></li>
-      <li {% block navbar_css_m_new %}{% endblock %}><a href="{% url 'courses_files_edit' %}">新課 New Course</a></li>
+      <li {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}><a href="{% url 'index' %}">首頁 Home</a></li>
+      <li {% if request.resolver_match.url_name == 'courses' %}class="active"{% endif %}><a href="{% url 'courses' %}">課程 Course</a></li>
+      <li  {% if request.resolver_match.url_name == 'courses_edit' %}class="active"{% endif %}><a href="{% url 'courses_edit' %}">新課 New Course</a></li>
       <!-- <li {% block navbar_css_m_files %}{% endblock %}><a href="files.html">文件管理 Files</a></li> -->
       <hr>
-      <li  class="active"><a href='Signup.html'><span class='fas fa-user-plus' style='margin-right: 8px;'></span>註冊 Signup</a></li>
-      <li><a href='login.html'><span class='fas fa-sign-in-alt' style='margin-right: 8px;'></span>登入 Login</a></li>
+      {% if user.is_authenticated %}
+      <li {% if request.resolver_match.url_name == 'users_panel' %}class="active"{% endif %}><a href="{% url 'users_panel' %}"><span class="fas fa-user-graduate" style="margin-right: 8px;"></span>{{ user.first_name }}</a></li>
+      <li {% if request.resolver_match.url_name == 'logout' %}class="active"{% endif %}><a href="{% url 'logout' %}"><span class="fas fa-sign-in-alt" style="margin-right: 8px;"></span>登出</a></li>
+      {% else %}
+      <li {% if request.resolver_match.url_name == 'signup' %}class="active"{% endif %}><a href="{% url 'signup' %}"><span class="fas fa-user-plus" style="margin-right: 8px;"></span>註冊</a></li>
+      <li {% if request.resolver_match.url_name == 'login' %}class="active"{% endif %}><a href="{% url 'login' %}"><span class="fas fa-sign-out-alt" style="margin-right: 8px;"></span>登入</a></li>
+      {% endif %}
     </ul>
     <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
   </div>

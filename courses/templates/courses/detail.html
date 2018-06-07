@@ -8,10 +8,10 @@
       var w = window.outerWidth;
 
       if(w <= 901){
-        document.getElementById("login_care").classList.remove('horizontal');
+        document.getElementById("login_care").classList.remove("horizontal");
         document.getElementById("card-stacked").style.border = "none";
       }else{
-        document.getElementById("login_care").classList.add('horizontal');
+        document.getElementById("login_care").classList.add("horizontal");
         document.getElementById("card-stacked").style.borderLeft = "0.3px solid #acacac;";
       }
 
@@ -70,16 +70,6 @@
   </style>
 {% endblock %}
 
-{% block navbar_css_index %}{% endblock %}
-{% block navbar_css_course %}class="active"{% endblock %}
-{% block navbar_css_new %}{% endblock %}
-{% block navbar_css_files %}{% endblock %}
-
-{% block navbar_css_m_index %}{% endblock %}
-{% block navbar_css_m_course %}class="active"{% endblock %}
-{% block navbar_css_m_new %}{% endblock %}
-{% block navbar_css_m_files %}{% endblock %}
-
 {% block body_tag %}onload="RESIZE();"  onresize="RESIZE()"{% endblock %}
 
 {% block content %}
@@ -91,7 +81,7 @@
           <div class="col s12 m9">
               <div class="">{{ course.course_name }}</div>
           </div>
-          <div class="col s12 m3" style="padding: 5px 10px; text-align: right;"><a class="waves-effect waves-light btn-large orange accent-2" style="box-shadow: none !important;" href="upload.html"><i class="material-icons left">attach_file</i>新增檔案</a></div>
+          <div class="col s12 m3" style="padding: 5px 10px; text-align: right;"><a class="waves-effect waves-light btn-large orange accent-2" style="box-shadow: none !important;" href="{% url 'courses_files_upload' course.id %}"><i class="material-icons left">attach_file</i>新增檔案</a></div>
       </div> 
       <!-- ======================= Page Title ======================= -->
 
@@ -103,7 +93,7 @@
                 <p>{{ course.course_discription|safe }}</p>
                    <Br>
                    <a class="waves-effect waves-light btn  orange accent-1">
-                     <div href='{{ c.course_website }}' target='_blank'>詳細資訊 View details »</div>
+                     <div href="{{ c.course_website|safe }}" target="_blank">詳細資訊 View details »</div>
                    </a>
               </div>
 
@@ -154,7 +144,7 @@
               </div>
 
               <div class="course_file-body">
-                <table width='100%' border='0' cellspacing='0' cellpadding='0' class='table  '>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table  ">
                   <tbody>﻿</tbody>
                 </table>
               </div>
@@ -175,7 +165,7 @@
               </div>
 
               <div class="course_file-body">
-                <table width='100%' border='0' cellspacing='0' cellpadding='0' class='table  '>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table  ">
                   <tbody>﻿</tbody>
                 </table>
               </div>
@@ -197,44 +187,16 @@
               </div>
 
               <div class="course_file-body">
-                <table width='100%' border='0' cellspacing='0' cellpadding='0' class='table  '>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table  ">
                   <tbody>﻿﻿﻿
-                    <tr>
-                      <td colspan=2><a href='upload.php?id=1&fid=1'><i class='fas fa-plus-square' style='color: #1c160e; margin-right: 8px;' title='增加子檔案'></i></a><i class='fas fa-file-powerpoint' style='margin-right: 8px;'></i><a  href='function_download.php?fpath=Coures_Files/1/1.pptx&file_s=2017_01.課程報告_Invent A Technology.pptx' target='_blank'>2017_01.課程報告_Invent A Technology.pptx</a></td>
-                      <td style='text-align: right;'>1.3 MB</td>
-                    </tr>
-
+                    {% for file in files %}
                     ﻿﻿<tr>
-                      <td colspan=2><a href='upload.php?id=1&fid=2'><i class='fas fa-plus-square' style='color: #1c160e; margin-right: 8px;' title='增加子檔案'></i></a><i class='fas fa-file-powerpoint' style='margin-right: 8px;'></i><a  href='function_download.php?fpath=Coures_Files/1/2.pptx&file_s=2017_01.課程報告_Microsoft.pptx' target='_blank'>2017_01.課程報告_Microsoft.pptx</a></td>
-                      <td style='text-align: right;'>1.7 MB</td>
+                      <td colspan=2>
+                        <i class="fas fa-file-powerpoint" style="margin-right: 8px;"></i>
+                        <a  href="{{ file.cfile.url }}" target="_blank">{{ file.cfile_content }}</a></td>
+                      <td style="text-align: right;">{{ file.cfile.size|filesizeformat }}</td>
                     </tr>﻿
-
-                    <tr>
-                      <td style='width:60px;text-align: right;'>→</td>
-                      <td><i class='fas fa-file-pdf' style='margin-right: 8px;'></i><a  href='function_download.php?fpath=Coures_Files/1/6.pdf&file_s=Microsoft(Lecture).pdf' target='_blank'>Microsoft(Lecture).pdf</a></td>
-                      <td style='text-align: right;'>633.9 KB</td>
-                    </tr>
-
-                    ﻿<tr>
-                      <td style='width:60px;text-align: right;'>→</td>
-                        <td><i class='fas fa-file-pdf' style='margin-right: 8px;'></i><a  href='function_download.php?fpath=Coures_Files/1/7.pdf&file_s=架構.pdf' target='_blank'>架構.pdf</a></td>
-                        <td style='text-align: right;'>295.3 KB</td>
-                      </tr>﻿﻿
-
-                      <tr>
-                        <td colspan=2><a href='upload.php?id=1&fid=3'><i class='fas fa-plus-square' style='color: #1c160e; margin-right: 8px;' title='增加子檔案'></i></a><i class='fas fa-file-powerpoint' style='margin-right: 8px;'></i><a  href='function_download.php?fpath=Coures_Files/1/3.pptx&file_s=2017_01.課程報告_TED Talks.pptx' target='_blank'>2017_01.課程報告_TED Talks.pptx</a></td>
-                        <td style='text-align: right;'>0.0 Bytes</td>
-                      </tr>
-
-                      ﻿﻿<tr>
-                        <td colspan=2><a href='upload.php?id=1&fid=4'><i class='fas fa-plus-square' style='color: #1c160e; margin-right: 8px;' title='增加子檔案'></i></a><i class='fas fa-file-powerpoint' style='margin-right: 8px;'></i><a  href='function_download.php?fpath=Coures_Files/1/4.pptx&file_s=2017_01.課程報告_User Experience.pptx' target='_blank'>2017_01.課程報告_User Experience.pptx</a></td>
-                        <td style='text-align: right;'>2.0 MB</td>
-                      </tr>
-
-                      ﻿﻿<tr>
-                        <td colspan=2><a href='upload.php?id=1&fid=5'><i class='fas fa-plus-square' style='color: #1c160e; margin-right: 8px;' title='增加子檔案'></i></a><i class='fas fa-file-pdf' style='margin-right: 8px;'></i><a  href='function_download.php?fpath=Coures_Files/1/5.pdf&file_s=2017_03.期末考_II.pdf' target='_blank'>2017_03.期末考_II.pdf</a></td>
-                        <td style='text-align: right;'>213.5 KB</td>
-                      </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
