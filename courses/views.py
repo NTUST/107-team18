@@ -1,9 +1,16 @@
 from django.contrib import auth, messages
+from django.contrib.auth.models import User
 from django.db.models import Count
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import CourseAdminstrator, CourseInformation, CourseFile
 from .forms import CourseFileForm
+
+def handle_uploaded_file(f):
+    path = 'static/files/courses/'
+    with open(path + f.name, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
 def courses(request):
     if request.method == 'POST': # Search
@@ -28,7 +35,7 @@ def courses(request):
 def courses_detail(request, id):
     if not request.user.is_authenticated:
         messages.info(request, '請先登入')
-        return render(request, 'main/login.html')
+        return redirect('login')
 
     try:
         course = CourseInformation.objects.get(pk=id)
@@ -36,24 +43,49 @@ def courses_detail(request, id):
         messages.info(request, '找不到課程!')
         return render(request, 'courses/index.html')
 
-    return render(request, 'courses/detail.html', {'course': course})
+    files = CourseFile.objects.filter(course=course)
 
-def courses_files_upload(request): # 帶著 files 進來
-    if not request.user.is_authenticated():
-        messages.info(request, '請先登入!')
-        return render(request, 'main/login.html')
+    return render(request, 'courses/detail.html', {'course': course, 'files':files})
 
-    if request.Post: #如果是上傳檔案
-        form = CourseFileForm(request.POST)
-        if form.is_valid():
-            courses = form.save()
-    # 否則吐出 上傳檔案的頁面
-
-    return HttpResponse('upload')
-
-def courses_files_edit(request):
+def courses_edit(request):
     if not request.user.is_authenticated:
         messages.info(request, '請先登入!')
-        return render(request, 'main/login.html')
+        return redirect('login')
+
+    if not request.user.is_superuser:
+        messages.info(request, '你必須是管理員!')
+        return redirect('index')
 
     return render(request, 'courses/edit.html')
+
+def courses_files_upload(request, id): # 帶著 files 進來
+    if not request.user.is_authenticated:
+        messages.info(request, '請先登入!')
+        return redirect('login')
+
+    try:
+        course = CourseInformation.objects.get(pk=id)
+    except:
+        messages.info(request, '找不到課程!')
+        return redirect('courses')
+
+    if request.method == 'POST': #如果是上傳檔案
+        form = CourseFileForm(request.POST, request.FILES)
+        form.uploader = User.objects.get(username=request.user)
+        if form.is_valid():
+            cform = form.save(commit=False)
+            cform.uploader = User.objects.get(username=request.user)
+            cform.course = course
+            cform.save()
+            handle_uploaded_file(request.FILES['cfile'])
+
+            messages.info(request, '上傳成功!')
+            return redirect('courses_detail', id=id)
+
+        messages.info(request, '上傳失敗!')
+        return render(request, 'courses/upload.html', {'course': course, 'form': form})
+        # 要 return
+
+    # 不是上傳檔案
+
+    return render(request, 'courses/upload.html', {'course': course})

@@ -23,12 +23,12 @@ class CourseInformation(models.Model):
 class CourseFile(models.Model):
     uploader = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     course = models.ForeignKey(CourseInformation, on_delete=models.CASCADE)
-    parent = models.ForeignKey('self', default=None, on_delete=models.DO_NOTHING)
+    parent = models.ForeignKey('self', default=None, on_delete=models.DO_NOTHING, null=True, blank=True)
+    cfile = models.FileField(upload_to='static/files/courses/', max_length=100)
     cfile_class = models.CharField(max_length=20) # COMMENT 'Handout/Homework/Exam'
-    cfile_type = models.CharField(max_length=20)
     cfile_year = models.CharField(max_length=4) # Defalut Year Now # max next year
     cfile_content = models.CharField(max_length=100)
-    cfile_subname = models.CharField(max_length=20)
+    # cfile_subname = models.CharField(max_length=20) # 表單裡面沒有
 
     def __str__(self):
         return self.cfile_content

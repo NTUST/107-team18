@@ -9,10 +9,10 @@
     <ul class="right hide-on-med-and-down">
       <li {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}><a href="{% url 'index' %}">首頁</a></li>
       <li {% if request.resolver_match.url_name == 'courses' %}class="active"{% endif %}><a href="{% url 'courses' %}">課程</a></li>
-      <li {% if request.resolver_match.url_name == 'courses_files_edit' %}class="active"{% endif %}><a href="{% url 'courses_files_edit' %}">新課</a></li>
+      <li {% if request.resolver_match.url_name == 'courses_edit' %}class="active"{% endif %}><a href="{% url 'courses_edit' %}">新課</a></li>
       <!-- <li {% block navbar_css_files %}{% endblock %}><a href="files.html">文件 Files</a></li> -->
       {% if user.is_authenticated %}
-      <li {% if request.resolver_match.url_name == 'users_panel' %}class="active"{% endif %}><a href="{% url 'users_panel' %}"><span class="fas fa-user-graduate" style="margin-right: 8px;"></span>User</a></li>
+      <li {% if request.resolver_match.url_name == 'users_panel' %}class="active"{% endif %}><a href="{% url 'users_panel' %}"><span class="fas fa-user-graduate" style="margin-right: 8px;"></span>{{ user.first_name }}</a></li>
       <li {% if request.resolver_match.url_name == 'logout' %}class="active"{% endif %}><a href="{% url 'logout' %}"><span class="fas fa-sign-in-alt" style="margin-right: 8px;"></span>登出</a></li>
       {% else %}
       <li {% if request.resolver_match.url_name == 'signup' %}class="active"{% endif %}><a href="{% url 'signup' %}"><span class="fas fa-user-plus" style="margin-right: 8px;"></span>註冊</a></li>
@@ -25,16 +25,16 @@
       <hr>
       <div style="text-align: center; padding-top: 20px;">
         <img style="max-height: 120px; " src="{% static 'images/icon_user.png' %}"><br>
-        <div style="font-size: 14pt; font-weight: bold; margin-top: -20px;">使用者 User</div>
+        <div style="font-size: 14pt; font-weight: bold; margin-top: -20px;">{{ user.first_name }}</div>
       </div>
       <hr>
       <li {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}><a href="{% url 'index' %}">首頁 Home</a></li>
       <li {% if request.resolver_match.url_name == 'courses' %}class="active"{% endif %}><a href="{% url 'courses' %}">課程 Course</a></li>
-      <li  {% if request.resolver_match.url_name == 'courses_files_edit' %}class="active"{% endif %}><a href="{% url 'courses_files_edit' %}">新課 New Course</a></li>
+      <li  {% if request.resolver_match.url_name == 'courses_edit' %}class="active"{% endif %}><a href="{% url 'courses_edit' %}">新課 New Course</a></li>
       <!-- <li {% block navbar_css_m_files %}{% endblock %}><a href="files.html">文件管理 Files</a></li> -->
       <hr>
       {% if user.is_authenticated %}
-      <li {% if request.resolver_match.url_name == 'users_panel' %}class="active"{% endif %}><a href="{% url 'users_panel' %}"><span class="fas fa-user-graduate" style="margin-right: 8px;"></span>User</a></li>
+      <li {% if request.resolver_match.url_name == 'users_panel' %}class="active"{% endif %}><a href="{% url 'users_panel' %}"><span class="fas fa-user-graduate" style="margin-right: 8px;"></span>{{ user.first_name }}</a></li>
       <li {% if request.resolver_match.url_name == 'logout' %}class="active"{% endif %}><a href="{% url 'logout' %}"><span class="fas fa-sign-in-alt" style="margin-right: 8px;"></span>登出</a></li>
       {% else %}
       <li {% if request.resolver_match.url_name == 'signup' %}class="active"{% endif %}><a href="{% url 'signup' %}"><span class="fas fa-user-plus" style="margin-right: 8px;"></span>註冊</a></li>

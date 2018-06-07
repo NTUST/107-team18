@@ -57,5 +57,7 @@ CourseInformation.objects.create(course_administrator=CourseAdminstrator.objects
 
 ###################
 from django.contrib.auth.models import User
-u = User.objects.create_user(username='sheiun', password='P@ssword')
-s = User.objects.create_superuser(username='admin', password='P@ssword')
+User.objects.all().delete()
+
+User.objects.create_user(username='sheiun', password='P@ssword', first_name='雪煾', email='sheiun@gmail.com')
+User.objects.create_superuser(username='admin', password='P@ssword', first_name='管理員', email='none@email.com')

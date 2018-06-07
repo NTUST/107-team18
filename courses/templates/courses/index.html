@@ -123,7 +123,7 @@
 
                 <div class="input-field" style="">
                   <input class="user_input validate" id="search_Name" name="search_Name" type="text" placeholder="">
-                  <label for="tb_Name">關鍵字</label>
+                  <label for="search_Name">關鍵字</label>
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@
       </div> 
     <br><br>
   </div>
-  <form id="form_search" style="display: none;" action="." method="POST">
+  <form id="form_search" style="display: none;" action="{% url 'courses' %}" method="POST">
     {% csrf_token %}
     <input type="text" name="mode" id="mode">
     <input type="text" name="condition">

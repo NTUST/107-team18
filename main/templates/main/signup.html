@@ -59,14 +59,7 @@
     }
 </style>
 {% endblock %}
-{% block navbar_css_index %}{% endblock %}
-{% block navbar_css_course %}{% endblock %}
-{% block navbar_css_new %}{% endblock %}
-{% block navbar_css_files %}{% endblock %}
-{% block navbar_css_m_index %}{% endblock %}
-{% block navbar_css_m_course %}{% endblock %}
-{% block navbar_css_m_new %}{% endblock %}
-{% block navbar_css_m_files %}{% endblock %}
+
 {% block body_tag %}onload="RESIZE();"  onresize="RESIZE()"{% endblock %}
 {% block content %}
 <div class="container" style="padding-top: 30px;">
@@ -80,22 +73,26 @@
                             <p class="Login_Title_Des">Coper File歡迎您的加入</p>
                         </div>
                         <div class="Login_Container">
-                            <form id="form" action="." method="POST">
+                            <form id="form" action="{% url 'signup' %}" method="POST">
                               {% csrf_token %}
                                 <div class="input-field">
-                                    <input class="user_input validate" id="tb_Account" name="username" type="text" placeholder="請輸入帳號 Account">
+                                    <input class="user_input validate" id="tb_email" name="email" type="email" placeholder="請輸入電子信箱 Email" value="{{ form.data.email }}">
+                                    <label for="tb_email">電子信箱 Email</label>
+                                </div>
+                                <div class="input-field" style="margin-top: -20px;">
+                                    <input class="user_input validate" id="tb_Account" name="username" type="text" placeholder="請輸入帳號 Account" value="{{ form.data.username }}">
                                     <label for="tb_Account">帳號 Account</label>
                                 </div>
                                 <div class="input-field" style="margin-top: -20px;">
-                                    <input class="user_input validate" id="tb_Password" name="password" type="password" placeholder="請輸入密碼 Password">
+                                    <input class="user_input validate" id="tb_Password" name="password1" type="password" placeholder="請輸入密碼 Password" value="{{ form.data.username }}">
                                     <label for="tb_Password">密碼 Password</label>
                                 </div>
                                 <div class="input-field" style="margin-top: -20px;">
-                                    <input class="user_input validate" id="tb_Password_ck" name="password_ck" type="password" placeholder="請確認密碼 Check">
+                                    <input class="user_input validate" id="tb_Password_ck" name="password2" type="password" placeholder="請確認密碼 Check" value="{{ form.data.password2 }}">
                                     <label for="tb_Password_ck">確認 Check</label>
                                 </div>
                                 <div class="input-field" style="margin-top: -20px;">
-                                    <input class="user_input validate" id="tb_Name" name="first_name" type="text" placeholder="請輸入姓名 Name">
+                                    <input class="user_input validate" id="tb_Name" name="first_name" type="text" placeholder="請輸入姓名 Name" value="{{ form.data.first_name }}">
                                     <label for="tb_Name">姓名 Name</label>
                                 </div>
                                 <div class="input-field " style="margin-top: -40px;">
@@ -122,11 +119,13 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card-action">
-                        <a onclick="document.getElementById('form').submit();" class="waves-effect waves-light btn-large brown darken-4" style="width: 100%;">
-                            <div style="max-width: 90px; margin: auto; "><i class="material-icons left" style="margin-right: 0px;">send</i>送出</div>
-                        </a>
-                    </div>
+                    </form>                 
+                  </div>
+                </div>
+                <div class="card-action">
+                    <a onclick="document.getElementById('form').submit();" class="waves-effect waves-light btn-large brown darken-4" style="width: 100%;">
+                        <div style="max-width: 90px; margin: auto; "><i class="material-icons left" style="margin-right: 0px;">send</i>送出</div>
+                    </a>
                 </div>
             </div>
         </div>
