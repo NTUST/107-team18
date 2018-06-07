@@ -2,7 +2,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Count
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from courses.models import CourseInformation
 
 def index(request):
@@ -18,9 +18,14 @@ def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+
+            user = form.save(commit=False)
+            user.first_name = request.POST['first_name']
+            user.email = request.POST['email']
+            user.save()
+            
             messages.info(request, '註冊成功!')
-            return login(request)
+            return redirect('login')
         else:
             messages.info(request, '註冊失敗!')
             return render(request, 'main/signup.html', {'form': form})
@@ -30,7 +35,7 @@ def signup(request):
 def login(request):
     if request.user.is_authenticated: 
         messages.info(request, '你已登入!')
-        return index(request)
+        return redirect('index')
 
     if request.method == 'POST':
         username = request.POST.get('username', '')
@@ -39,7 +44,7 @@ def login(request):
         if user is not None and user.is_active:
             auth.login(request, user)
             messages.info(request, '登入成功!')
-            return index(request)
+            return redirect('index')
         else:
             messages.info(request, '登入失敗!')
             return render(request, 'main/login.html') 
@@ -48,4 +53,4 @@ def login(request):
 def logout(request):
     messages.info(request, '登出成功!')
     auth.logout(request)
-    return index(request)
+    return redirect('index')

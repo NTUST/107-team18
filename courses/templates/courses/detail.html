@@ -92,8 +92,8 @@
               <div class="card-image" style="width:90%;">
                 <p>{{ course.course_discription|safe }}</p>
                    <Br>
-                   <a class="waves-effect waves-light btn  orange accent-1">
-                     <div href="{{ c.course_website|safe }}" target="_blank">詳細資訊 View details »</div>
+                   <a href="{{ course.course_website }}" target="_blank" class="waves-effect waves-light btn orange accent-1">
+                     <div>詳細資訊 View details »</div>
                    </a>
               </div>
 
@@ -193,7 +193,7 @@
                     ﻿﻿<tr>
                       <td colspan=2>
                         <i class="fas fa-file-powerpoint" style="margin-right: 8px;"></i>
-                        <a  href="{{ file.cfile.url }}" target="_blank">{{ file.cfile_content }}</a></td>
+                        <a href="{{ MEDIA_URL }}{{ file.cfile.url }}" target="_blank" download>{{ file.cfile_content }}</a></td>
                       <td style="text-align: right;">{{ file.cfile.size|filesizeformat }}</td>
                     </tr>﻿
                     {% endfor %}
