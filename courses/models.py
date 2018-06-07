@@ -10,7 +10,7 @@ class CourseAdminstrator(models.Model):
 
 class CourseInformation(models.Model):
     course_administrator = models.ForeignKey(CourseAdminstrator, on_delete=models.CASCADE)
-    # course_no = models.CharField(max_length=20)
+    # course_no = models.CharField(max_length=20) #### blank/null
     course_name = models.CharField(max_length=20)
     course_teacher = models.CharField(max_length=20)
     course_type = models.CharField(max_length=20)

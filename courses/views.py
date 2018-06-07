@@ -28,7 +28,7 @@ def courses(request):
         else:
             messages.info(request, '搜尋錯誤!')
             courses = CourseInformation.objects.annotate(file_count=Count('coursefile')).order_by('-file_count')
-    else: # Not Search
+    else:
         courses = CourseInformation.objects.annotate(file_count=Count('coursefile')).order_by('-file_count')
     return render(request, 'courses/index.html', {'courses': courses})
 
@@ -84,8 +84,5 @@ def courses_files_upload(request, id): # 帶著 files 進來
 
         messages.info(request, '上傳失敗!')
         return render(request, 'courses/upload.html', {'course': course, 'form': form})
-        # 要 return
-
-    # 不是上傳檔案
 
     return render(request, 'courses/upload.html', {'course': course})
