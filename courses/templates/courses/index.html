@@ -180,6 +180,7 @@
        target[i].style.display = "none";
     }
     for (var i = (now-1)*10; i<=(now-1)*10+9;i++) {
+      if (i >= target.length) break;
       target[i].style.display = "block";
     }
     // 修改頁數的 active 和 前後的 wave effects
