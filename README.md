@@ -36,15 +36,15 @@
 
 ### 前端
 * [馮聖峰](https://github.com/Fong0975)
-> 概念發想 / UI設計 / WIKI建立
+> 概念發想 / UI設計 / WIKI建立 / 文件製作
 
 ### 後端
 * [徐孟辰](https://github.com/sheiun)
-> 規範撰寫 / 整合測試 / 後續維護
+> 規範撰寫 / 整合測試 / 後續維護 / 除錯
 
 ### 其餘
 * [劉柏辰](https://github.com/EE91941387EE)
-> Awaiting EE91941387EE’s response
+> 最終測試
 
 * [林玉庭](https://github.com/0222826398)
-> Who he is?!
+> 最終測試
