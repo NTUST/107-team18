@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}用戶後台 | {% endblock %}
+{% block title %}後台-檔案清單 | {% endblock %}
 {% block style %}
-  <style type="text/css">
-    a{
-      color: #5c5c5c
+  <script type="text/javascript">
+    function RESIZE(){
+      var w = window.outerWidth;
+
+      if(w <= 901){
+        document.getElementById("login_care").classList.remove("horizontal");
+        document.getElementById("div_img").classList.remove("div_img");
+        document.getElementById("div_card_content").classList.add("div_text");
+      }else{
+        document.getElementById("login_care").classList.add("horizontal");
+        document.getElementById("div_img").classList.add("div_img");
+        document.getElementById("div_card_content").classList.remove("div_text");
+      }
+
     }
+  </script>
+
+
+
+  <style type="text/css">
+
+
     .page_header{
       width:100%;
 
@@ -14,19 +32,6 @@
       font-size: 30pt;
       font-weight: bolder;
 
-    }
-
-    .page_body{
-      width:100%;
-      margin: 100px auto;
-
-    }
-
-    .titleEng{
-      line-height: 6pt !important;
-      font-size: 6pt;
-      color: #919191;
-      font-weight: normal;
     }
 
     .course_file-header{
@@ -39,105 +44,142 @@
       padding: 5px 15px;
     }
 
-    .card_combine_p{
-      padding: 0px !important;
-      margin-top: 20px;
+    .titleEng{
+      font-size: 20pt;
+      color: #919191;
+      font-weight: normal;
     }
 
-    .card_combine{
-      box-shadow: 2px 2px 2px #dedede;
-      padding: 0px !important;
-      width: 95%
+    td{
+      /*text-align: center;*/
+      font-size: 10pt;
+      word-break: break-all;
     }
 
-    .card_top{
+    
+
+    .text_UserName {
+      font-size: 35pt;
+      font-weight: bolder;
+    }
+
+    .text_email{
+      word-break: break-all;
+    }
+
+
+    .img_user{
+      max-width: 150px !important;
+      margin: auto;
+    }
+
+    .div_img{
+      max-width: 200px !important;
+    }
+
+    .div_text{
       text-align: center;
-      height: 150px;
-      width: 100%;
     }
 
-    .card_top img{
-      max-width: 100px;
-      margin:25px auto;
-    }
-
-    .card_bottom{
-      vertical-align: middle;
-      padding: 10px;
-      text-align: center;
-      height: 60px;
-    }
-
-    .red_top{
-      background-color: #FEE198;
-    }
-
-    .red_bottom{
-      background-color: #FED56E;
-    }
-
-    .green_top{
-      background-color: #CEE3A2;
-    }
-
-    .green_bottom{
-      background-color: #B8D77B;
-    }
-
-    .blue_top{
-      background-color: #A5D5E1;
-    }
-
-    .blue_bottom{
-      background-color: #88C9D8;
-    }
 
   </style>
 {% endblock %}
 
-{% block content %}
-  <div class="container" style="">
+{% block body_tag %}onload="RESIZE();"  onresize="RESIZE()"{% endblock %}
 
+{% block content %}
+  <div class="container" style="padding-top: 30px;">
+    
       <!-- ======================= Page Title ======================= -->
       <div class="card row page_header">
           <div class="col s12 m12">
-              <div class="">後台管理 <font class="titleEng">User Management Panel</font></div>
+              <div class="">使用者後台 <font class="titleEng">User Manage</font></div>
           </div>
           <div class="col s12 m12" style="font-size: 10pt; font-weight: normal; padding: 8px 20px;">
             親愛的 使用者 用戶，您好，此為您的管理後台，您可在此變更、檢視您在網站中的設定與文件。
             <br>
             Dear User, Hello. This is your management panel, where you can change and view your settings and documents on the website.
+          </div>
+      </div> 
+      <!-- ======================= Page Title ======================= -->
+
+      <!-- ======================= User Profile ======================= -->
+      <div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+
+              <div class="course_file-header">
+                <i class="fas fa-info-circle"></i>
+                個人檔案
+              </div>
+
+              <div class="course_file-body">
+                <div class="row" style="padding: 5px 15px; min-height: 120px;">
+
+                  <div id="login_care" class="card horizontal orange lighten-5">
+
+                    <div id="div_img" class="card-image div_img" style="width:100%;  text-align: center;">
+                      <img class="img_user" src="{% static 'images/icon_user.png' %}">
+                    </div>
+                    
+                    <div class="card-stacked">
+                      <div id="div_card_content" class="card-content">
+                        <p class="text_UserName">{{ user.first_name }}</p>
+                        <div style="margin-top: 6px;"><p class="text_email">{{ user.email }}</p></div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
 
           </div>
-      </div> 
-      <!-- ======================= Page Title ======================= -->
-    
-      <!-- ======================= Page Title ======================= -->
-      <div class="row page_body">
-          <div class="col s12 m6 card_combine_p">
-            <a href="{% url 'users_profile' %}">
-              <div class="card_combine">
-                <div class="card_top red_top"><img src="{% static 'images/icon_list.png' %}"></div>
-                <div class="card_bottom red_bottom">個人檔案<br><font class="titleEng">User Profile</font></div>
+      </div>
+      <!-- ======================= User Profile ======================= -->
+
+
+      <!-- ======================= Temp-User List ======================= -->
+      <div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+
+              <div class="course_file-header">
+                <i class="fas fa-hdd"></i>
+                文件清單
               </div>
-            </a>            
-          </div>
-          <div class="col s12 m6 card_combine_p">
-            <a href="{% url 'users_files' %}">
-              <div class="card_combine">
-                <div class="card_top green_top"><img src="{% static 'images/icon_document.png' %}"></div>
-                <div class="card_bottom green_bottom">文件管理<br><font class="titleEng">Files Manage</font></div>
+
+              <div class="course_file-body">
+                <div class="row" style="padding: 5px 15px; min-height: 300px;">
+                    <table width="100%" style="max-width: 100%;" border="0" cellspacing="0" cellpadding="0" class="table ">
+                      <tbody>
+                        {% for file in files%}﻿﻿﻿﻿
+                        <tr>
+                          <td  style="text-align:center;">{{ file.course }}</td>
+
+                          <td>
+                            <a href="#" style="margin-right: 8px;"><i class="fas fa-pen-square" style="color: #4286f4; margin-left: 8px;" title="編輯-{{ file.cfile_content}}"></i></a>﻿<i class="fas fa-file-pdf" style="margin-right: 8px;"></i><a href="{{ MEDIA_URL }}{{ file.cfile.url }}" target="_blank" download>{{ file.cfile_content }}</a>
+                          </td>
+
+                          <td style="text-align: center;">{{ file.cfile_class }}</td>
+                          <td style="text-align: center;">{{ file.cfile.size|filesizeformat }}</td>
+                          <td style="text-align: right;">{{ file.cfile_year }}</td>
+                        </tr>﻿﻿﻿
+                        {% endfor %}
+                      ﻿﻿﻿</tbody>
+                    </table>
+
+                    <div style="width: 100%; text-align: center; font-size: 9pt; font-weight: bold; margin-top: 15px;" >＜以下空白＞</div>
+                </div>
               </div>
-            </a>
-          </div>
-          <!-- <div class="col s12 m4 card_combine_p">
-            <div class="card_combine">
-              <div class="card_top blue_top"><img src="{% static 'images/icon_padlock.png' %}"></div>
-              <div class="card_bottom blue_bottom">密碼變更<br><font class="titleEng">Password Change</font></div>
+
             </div>
-          </div> -->
-      </div> 
-      <!-- ======================= Page Title ======================= -->
+
+          </div>
+      </div>
+      <!-- ======================= Temp-User List ======================= -->
+
     <br><br>
   </div>
 {% endblock %}

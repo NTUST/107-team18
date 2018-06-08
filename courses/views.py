@@ -43,9 +43,11 @@ def courses_detail(request, id):
         messages.info(request, '找不到課程!')
         return render(request, 'courses/index.html')
 
-    files = CourseFile.objects.filter(course=course)
+    handouts = CourseFile.objects.filter(course=course, cfile_class__icontains="handout")
+    homeworks = CourseFile.objects.filter(course=course, cfile_class__icontains="homework")
+    exams = CourseFile.objects.filter(course=course, cfile_class__icontains="exam")
 
-    return render(request, 'courses/detail.html', {'course': course, 'files':files})
+    return render(request, 'courses/detail.html', {'course': course, 'handouts':handouts, 'homeworks':homeworks, 'exams':exams})
 
 def courses_edit(request):
     if not request.user.is_authenticated:

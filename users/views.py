@@ -10,22 +10,7 @@ def users_panel(request):
         messages.info(request, '請先登入')
         return render(request, 'main/login.html')
 
-    return render(request, 'users/index.html')
-
-def users_profile(request):
-    if not request.user.is_authenticated:
-        messages.info(request, '請先登入')
-        return render(request, 'main/login.html')
-
-    return render(request, 'users/profile.html') 
-
-def users_files(request):
-    if not request.user.is_authenticated:
-        messages.info(request, '請先登入')
-        return render(request, 'main/login.html')
-
     user = User.objects.get(username=request.user)
     files = CourseFile.objects.filter(uploader=user)
 
-    return render(request, 'users/files.html', {'files':files}) 
-
+    return render(request, 'users/index.html', {'files':files}) 

@@ -121,7 +121,7 @@
                             </tr>
                             <tr>
                               <th>選修類型</th>
-                              <td>{{ course.course_type }}</td>
+                              <td>{% if course.course_type == '0' %}必修{% elif course.course_type == '1' %}選修{% else %}通識{% endif %}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -145,7 +145,16 @@
 
               <div class="course_file-body">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table  ">
-                  <tbody>﻿</tbody>
+                  <tbody>﻿
+                  {% for handout in handouts %}
+                    ﻿﻿<tr>
+                      <td colspan=2>
+                        <i class="fas fa-file-powerpoint" style="margin-right: 8px;"></i>
+                        <a href="{{ MEDIA_URL }}{{ handout.cfile.url }}" target="_blank" download>{{ handout.cfile_content }}</a></td>
+                      <td style="text-align: right;">{{ handout.cfile.size|filesizeformat }}</td>
+                    </tr>﻿
+                    {% endfor %}
+                  </tbody>
                 </table>
               </div>
 
@@ -166,7 +175,16 @@
 
               <div class="course_file-body">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table  ">
-                  <tbody>﻿</tbody>
+                  <tbody>﻿
+                    {% for homework in homeworks %}
+                    ﻿﻿<tr>
+                      <td colspan=2>
+                        <i class="fas fa-file-powerpoint" style="margin-right: 8px;"></i>
+                        <a href="{{ MEDIA_URL }}{{ homework.cfile.url }}" target="_blank" download>{{ homework.cfile_content }}</a></td>
+                      <td style="text-align: right;">{{ homework.cfile.size|filesizeformat }}</td>
+                    </tr>﻿
+                    {% endfor %}
+                  </tbody>
                 </table>
               </div>
 
@@ -189,12 +207,12 @@
               <div class="course_file-body">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table  ">
                   <tbody>﻿﻿﻿
-                    {% for file in files %}
+                    {% for exam in exams %}
                     ﻿﻿<tr>
                       <td colspan=2>
                         <i class="fas fa-file-powerpoint" style="margin-right: 8px;"></i>
-                        <a href="{{ MEDIA_URL }}{{ file.cfile.url }}" target="_blank" download>{{ file.cfile_content }}</a></td>
-                      <td style="text-align: right;">{{ file.cfile.size|filesizeformat }}</td>
+                        <a href="{{ MEDIA_URL }}{{ exam.cfile.url }}" target="_blank" download>{{ exam.cfile_content }}</a></td>
+                      <td style="text-align: right;">{{ exam.cfile.size|filesizeformat }}</td>
                     </tr>﻿
                     {% endfor %}
                   </tbody>
