@@ -70,9 +70,10 @@
               <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">課程清單<i class="material-icons right">search</i></span>
                 <hr>
-                
+                {% widthratio courses|length 10 1 as Page %}
+
                 {% for course in courses %}
-                <div class="course_list_one">
+                <div class="course_list_one"{% if forloop.counter > 10 %} style="display: none;{% endif %}">
                   <div class="header_mid_icon">
                     <i class="fas fa-bookmark" style="margin-right: 10px;"></i>
                     <a href="{% url 'courses_detail' course.id %}">【{{ course.course_administrator }}】 {{ course.course_name }}</a>
@@ -85,18 +86,19 @@
                   </div>
                 </div>
                 {% endfor %}
-
-                <!-- <div style="margin-top: 30px; width: 100%; text-align: center;">
+                
+                
+                  
+                
+                <div style="margin-top: 30px; width: 100%; text-align: center;">
                   <ul class="pagination">
-                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                    <li class="active brown darken-1"><a href="#!">1</a></li>
-                    <li class="waves-effect"><a href="#!">2</a></li>
-                    <li class="waves-effect"><a href="#!">3</a></li>
-                    <li class="waves-effect"><a href="#!">4</a></li>
-                    <li class="waves-effect"><a href="#!">5</a></li>
-                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <li class="disabled" id="prev"><a onclick="pageControler(-1)"><i class="material-icons">chevron_left</i></a></li>
+                    {% for i in "x"|ljust:Page %}
+                    <li id="pageNum{{ forloop.counter }}" class="jsusing waves-effect{% if forloop.counter == 1 %} active brown darken-1{% endif %}"><a onclick="pageControler({{ forloop.counter }})">{{ forloop.counter }}</a></li>
+                    {% endfor %}
+                    <li class="waves-effect" id="next"><a onclick="pageControler(0)"><i class="material-icons">chevron_right</i></a></li>
                   </ul>
-                </div> -->
+                </div>
 
               </div>
               <div class="card-reveal">
@@ -145,5 +147,57 @@
     $("input[name='condition']").val($("#search_Name").val());
     $("#form_search").submit();
   });
+
+
+  function pageControler(e) {
+    var target = document.getElementsByClassName("course_list_one");
+    // 抓取目前頁數
+    var total = document.getElementsByClassName("jsusing").length;
+    var old = document.getElementsByClassName("active brown")[0].childNodes[0].text;
+    var now = parseInt(document.getElementsByClassName("active brown")[0].childNodes[0].text);
+    // 確定你按的是什麼
+    if (e > 0) {
+      // 頁數
+      if (e == now) return;
+      // 將 Active 
+      now = e;
+    } else if (e == 0 || e == -1) {
+      if ((e == 0 && now==total ) || (e==-1 && now==1)) return;
+      if (e==-1) {
+        now -= 1;
+      } else if (e==0){
+        now += 1;
+      }
+    } else {
+      return;
+    }
+    var elem = document.getElementById("pageNum"+old);
+    elem.classList.remove('active');
+    elem.classList.remove('brown')
+    elem.classList.remove('darken-1')
+    // 修改顯示的 div 從第 (now-1)*10 +1 ~ (now-1)* 10 + 10
+    for (var i = 0; i < target.length; i++) {
+       target[i].style.display = "none";
+    }
+    for (var i = (now-1)*10; i<=(now-1)*10+9;i++) {
+      target[i].style.display = "block";
+    }
+    // 修改頁數的 active 和 前後的 wave effects
+    document.getElementById("prev").classList.remove('disabled')
+    document.getElementById("prev").classList.add('waves-effect')
+    document.getElementById("next").classList.remove('disabled')
+    document.getElementById("next").classList.add('waves-effect')
+    if (now == 1) { // 第一頁
+      document.getElementById("prev").classList.add('disabled')
+      document.getElementById("prev").classList.remove('waves-effect')
+    } else if (now == total) { // 最後一頁
+      document.getElementById("next").classList.add('disabled')
+      document.getElementById("next").classList.remove('waves-effect')
+    }
+    var elem = document.getElementById("pageNum"+now);
+    elem.classList.add('active');
+    elem.classList.add('brown');
+    elem.classList.add('darken-1');
+  }
 </script>
 {% endblock%}

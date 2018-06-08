@@ -32,7 +32,7 @@ def courses(request):
         courses = CourseInformation.objects.annotate(file_count=Count('coursefile')).order_by('-file_count')
         
     if courses:
-        courses = courses[:10]
+        courses = courses[:100]
 
     return render(request, 'courses/index.html', {'courses': courses})
 
