@@ -1,7 +1,5 @@
-from django.conf.urls import url
-from . import views
+from django.urls import path
 
-urlpatterns = [
-    # users
-    url(r'^$', views.users_panel, name='users_panel'),
-]
+from users.views import users_panel
+
+urlpatterns = [path("", users_panel, name="users_panel")]

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import CourseAdminstrator, CourseInformation, CourseFile
+
+from courses.models import CourseFile, CourseAdminstrator, CourseInformation
 
 admin.site.register(CourseAdminstrator)
 admin.site.register(CourseInformation)

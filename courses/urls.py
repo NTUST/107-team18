@@ -1,14 +1,10 @@
-from django.conf.urls import url
-from . import views
+from django.urls import path
+
+from courses.views import courses, courses_detail, courses_edit, courses_files_upload
 
 urlpatterns = [
-    # courses/
-    url(r'^$', views.courses, name='courses'),
-    # courses/id # courses/1
-    url(r'^(?P<id>[\d]+)/$', views.courses_detail, name='courses_detail'),
-    # courses/edit
-    url(r'^edit/$', views.courses_edit, name='courses_edit'),
-
-    # courses/upload/id
-    url(r'^upload/(?P<id>[\d]+)/$', views.courses_files_upload, name='courses_files_upload'),
+    path("", courses, name="courses"),
+    path("<int:id>", courses_detail, name="courses_detail"),
+    path("edit", courses_edit, name="courses_edit"),
+    path("upload/<int:id>/", courses_files_upload, name="courses_files_upload"),
 ]

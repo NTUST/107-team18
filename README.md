@@ -23,7 +23,7 @@
 2. DjangoTemplates
 
 ### 後端
-1. Django 1.11
+1. Django 2.2
 2. 其餘參照 [requirements.txt](requirements.txt)
 
 ### 注意事項

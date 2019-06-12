@@ -1,5 +1,6 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+
 
 class CourseAdminstrator(models.Model):
     admin_id = models.CharField(max_length=20)
@@ -8,8 +9,11 @@ class CourseAdminstrator(models.Model):
     def __str__(self):
         return self.admin_name
 
+
 class CourseInformation(models.Model):
-    course_administrator = models.ForeignKey(CourseAdminstrator, on_delete=models.CASCADE)
+    course_administrator = models.ForeignKey(
+        CourseAdminstrator, on_delete=models.CASCADE
+    )
     # course_no = models.CharField(max_length=20) #### blank/null
     course_name = models.CharField(max_length=20)
     course_teacher = models.CharField(max_length=20)
@@ -20,13 +24,16 @@ class CourseInformation(models.Model):
     def __str__(self):
         return self.course_name
 
+
 class CourseFile(models.Model):
     uploader = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     course = models.ForeignKey(CourseInformation, on_delete=models.CASCADE)
-    parent = models.ForeignKey('self', default=None, on_delete=models.DO_NOTHING, null=True, blank=True)
-    cfile = models.FileField(upload_to='static/files/courses/', max_length=100)
-    cfile_class = models.CharField(max_length=20) # COMMENT 'Handout/Homework/Exam'
-    cfile_year = models.CharField(max_length=4) # Defalut Year Now # max next year
+    parent = models.ForeignKey(
+        "self", default=None, on_delete=models.DO_NOTHING, null=True, blank=True
+    )
+    cfile = models.FileField(upload_to="static/files/courses/", max_length=100)
+    cfile_class = models.CharField(max_length=20)  # COMMENT 'Handout/Homework/Exam'
+    cfile_year = models.CharField(max_length=4)  # Defalut Year Now # max next year
     cfile_content = models.CharField(max_length=100)
     # cfile_subname = models.CharField(max_length=20) # 表單裡面沒有
 

@@ -1,15 +1,10 @@
-from django.conf.urls import url
-from . import views
+from django.urls import path
+from main.views import index, signup, login, logout
 
 urlpatterns = [
-    # 
-    url(r'^$', views.index, name='index'),
-    # index/
-    url(r'^index/$', views.index, name='index'),
-    # signup/
-    url(r'^signup/$', views.signup, name='signup'),
-    # login/
-    url(r'^login/$', views.login, name='login'),
-    # logout/
-    url(r'^logout/$', views.logout, name='logout'),
+    path("", index, name="index"),
+    path("index", index, name="index"),
+    path("signup", signup, name="signup"),
+    path("login", login, name="login"),
+    path("logout", logout, name="logout"),
 ]
