@@ -6,4 +6,6 @@ WORKDIR /app/
 RUN pip install -r requirements.txt
 RUN pip install gunicorn
 COPY ./ /app
+RUN python manage.py makemigrations
+RUN python manage.py migrate
 CMD [ "gunicorn", "-b", "0.0.0.0:8787", "coper_files.wsgi" ]
