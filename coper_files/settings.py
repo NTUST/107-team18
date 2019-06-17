@@ -25,7 +25,7 @@ SECRET_KEY = "n+b!@($fez#b$tga&du^$0(g8hn2wnw18=ek=*w#ib&4r8w#5n"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'coper-files.sheiun.me']
 
 
 # Application definition
