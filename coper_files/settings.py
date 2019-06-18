@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "n+b!@($fez#b$tga&du^$0(g8hn2wnw18=ek=*w#ib&4r8w#5n"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', 'coper-files.sheiun.me']
 
@@ -118,3 +118,5 @@ STATIC_URL = "/static/"
 MEDIA_URL = "/"
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+STATIC_ROOT = "/var/www/example.com/static/"
