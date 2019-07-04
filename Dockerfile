@@ -7,4 +7,6 @@ RUN pip install gunicorn
 COPY ./ /app
 RUN python manage.py makemigrations
 RUN python manage.py migrate
+RUN python manage.py migrate --run-syncdb
+RUN python manage.py shell -c "exec(open('myscript.py', encoding='utf-8').read())"
 CMD [ "gunicorn", "-b", "0.0.0.0:8787", "coper_files.wsgi" ]
