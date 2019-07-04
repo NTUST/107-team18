@@ -1,4 +1,3 @@
-
 FROM python:3.7
 LABEL maintainer="SheiUn <me.sheiun@gmail.com>"
 COPY ./requirements.txt /app/requirements.txt
